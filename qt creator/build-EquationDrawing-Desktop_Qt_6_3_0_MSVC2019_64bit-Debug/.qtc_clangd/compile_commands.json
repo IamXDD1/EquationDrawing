@@ -7,7 +7,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-LYLqJT\\clang-uiheader-KVeMaB",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-SMRYxJ\\clang-uiheader-hHqmwd",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -111,7 +111,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-LYLqJT\\clang-uiheader-KVeMaB",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-SMRYxJ\\clang-uiheader-hHqmwd",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -202,10 +202,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\EquationDrawing\\mainwindow.cpp"
+        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\EquationDrawing\\widget.cpp"
     ],
     "directory": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/EquationDrawing/mainwindow.cpp"
+    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/EquationDrawing/widget.cpp"
 },
 {
     "arguments": [
@@ -215,7 +215,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-LYLqJT\\clang-uiheader-KVeMaB",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-SMRYxJ\\clang-uiheader-hHqmwd",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -306,10 +306,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\EquationDrawing\\mainwindow.h"
+        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\EquationDrawing\\widget.h"
     ],
     "directory": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/EquationDrawing/mainwindow.h"
+    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/EquationDrawing/widget.h"
 },
 {
     "arguments": [
@@ -319,7 +319,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-LYLqJT\\clang-uiheader-KVeMaB",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-SMRYxJ\\clang-uiheader-hHqmwd",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -410,9 +410,9 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug\\ui_mainwindow.h"
+        "C:\\Users\\XDD\\Desktop\\Equation Drawing\\EquationDrawing\\qt creator\\build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug\\ui_widget.h"
     ],
     "directory": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug/ui_mainwindow.h"
+    "file": "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/build-EquationDrawing-Desktop_Qt_6_3_0_MSVC2019_64bit-Debug/ui_widget.h"
 }
 ]
