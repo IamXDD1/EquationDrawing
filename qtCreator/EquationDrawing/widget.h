@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QList>
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -44,7 +45,7 @@ public:
     QLineEdit* text;
     QString r,g,b;
     bool isEquationShow;
-    QString image_path = "C:/Users/XDD/Desktop/Equation Drawing/EquationDrawing/qt creator/EquationDrawing/image/";
+    QString image_path = "C:/Users/XDD/Desktop/EquationDrawing/EquationDrawing/qtcreator/EquationDrawing/image/";
     QString equation;
 
     MyFrame(QWidget *parent = nullptr) {
