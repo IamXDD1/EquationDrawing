@@ -7,6 +7,7 @@
 #include <QPushButton>
 #include <QMessageBox>
 #include <QList>
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
