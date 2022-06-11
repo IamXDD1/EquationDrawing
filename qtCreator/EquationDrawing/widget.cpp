@@ -6,12 +6,35 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+    Widget::makeplot();
     row_count = 0;
 }
 
 Widget::~Widget()
 {
     delete ui;
+}
+
+void Widget::makeplot(){
+    // generate some data:
+    QVector<double> x(201), y(201); // initialize with entries 0..100
+    for (int i=0; i<201; ++i)
+    {
+      x[i] = i/50.0 - 2; // x goes from -1 to 1
+      y[i] = sin(x[i]); // let's plot a quadratic function
+    }
+    // create graph and assign data to it:
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(0)->setData(x, y);
+    // give the axes some labels:
+    ui->customPlot->xAxis->setLabel("x");
+    ui->customPlot->yAxis->setLabel("y");
+    // set axes ranges, so we see all data:
+    ui->customPlot->xAxis->setRange(-1, 1);
+    ui->customPlot->yAxis->setRange(0, 1);
+    ui->customPlot->setInteraction(QCP::iRangeDrag,true);
+    ui->customPlot->setInteraction(QCP::iRangeZoom,true);
+    ui->customPlot->replot();
 }
 
 void Widget::createFrame(){

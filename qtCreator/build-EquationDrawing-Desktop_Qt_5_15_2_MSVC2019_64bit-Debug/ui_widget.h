@@ -24,7 +24,7 @@ class Ui_Widget
 public:
     QPushButton *CreateFunction;
     QTableWidget *tableWidget;
-    QCustomPlot *widget;
+    QCustomPlot *customPlot;
 
     void setupUi(QWidget *Widget)
     {
@@ -37,9 +37,9 @@ public:
         tableWidget = new QTableWidget(Widget);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setGeometry(QRect(500, 80, 460, 500));
-        widget = new QCustomPlot(Widget);
-        widget->setObjectName(QString::fromUtf8("widget"));
-        widget->setGeometry(QRect(29, 159, 421, 411));
+        customPlot = new QCustomPlot(Widget);
+        customPlot->setObjectName(QString::fromUtf8("customPlot"));
+        customPlot->setGeometry(QRect(10, 90, 481, 481));
 
         retranslateUi(Widget);
 
