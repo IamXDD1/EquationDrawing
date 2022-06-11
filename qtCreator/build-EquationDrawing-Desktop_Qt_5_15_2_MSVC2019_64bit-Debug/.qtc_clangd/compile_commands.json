@@ -7,7 +7,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -54,7 +54,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -68,9 +68,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -101,10 +101,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing\\main.cpp"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing\\main.cpp"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/EquationDrawing/main.cpp"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/EquationDrawing/main.cpp"
 },
 {
     "arguments": [
@@ -114,7 +114,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -161,7 +161,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -175,9 +175,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -208,10 +208,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing\\qcustomplot.cpp"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing\\qcustomplot.cpp"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/EquationDrawing/qcustomplot.cpp"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/EquationDrawing/qcustomplot.cpp"
 },
 {
     "arguments": [
@@ -221,7 +221,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -268,7 +268,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -282,9 +282,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -315,10 +315,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing\\widget.cpp"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing\\widget.cpp"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/EquationDrawing/widget.cpp"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/EquationDrawing/widget.cpp"
 },
 {
     "arguments": [
@@ -328,7 +328,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -375,7 +375,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -389,9 +389,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -422,10 +422,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing\\qcustomplot.h"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing\\qcustomplot.h"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/EquationDrawing/qcustomplot.h"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/EquationDrawing/qcustomplot.h"
 },
 {
     "arguments": [
@@ -435,7 +435,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -482,7 +482,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -496,9 +496,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -529,10 +529,10 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing\\widget.h"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing\\widget.h"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/EquationDrawing/widget.h"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/EquationDrawing/widget.h"
 },
 {
     "arguments": [
@@ -542,7 +542,7 @@
         "-I",
         "C:\\QT\\Tools\\QtCreator\\share\\qtcreator\\cplusplus\\wrappedQtHeaders\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-QTZzMQ\\clang-uiheader-aUCNBH",
+        "C:\\Users\\XDD\\AppData\\Local\\Temp\\QtCreator-NosbPI\\clang-uiheader-xaaWfG",
         "-nostdinc",
         "-nostdinc++",
         "--driver-mode=cl",
@@ -589,7 +589,7 @@
         "-D__FUNCTION__=\"someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580\"",
         "-D__FUNCDNAME__=\"?someLegalAndLongishFunctionNameThatWorksAroundQTCREATORBUG-24580@@YAXXZ\"",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\EquationDrawing",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\EquationDrawing",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include",
         "-I",
@@ -603,9 +603,9 @@
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\include\\QtCore",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\debug",
         "-I",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug",
         "-I",
         "C:\\QT\\5.15.2\\msvc2019_64\\mkspecs\\win32-msvc",
         "/clang:-isystem",
@@ -636,9 +636,9 @@
         "-Wno-unknown-warning-option",
         "-Wno-documentation-unknown-command",
         "-fno-delayed-template-parsing",
-        "C:\\Users\\XDD\\Desktop\\qt creator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\ui_widget.h"
+        "C:\\Users\\XDD\\Desktop\\QTcreator\\build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug\\ui_widget.h"
     ],
-    "directory": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
-    "file": "C:/Users/XDD/Desktop/qt creator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/ui_widget.h"
+    "directory": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/.qtc_clangd",
+    "file": "C:/Users/XDD/Desktop/QTcreator/build-EquationDrawing-Desktop_Qt_5_15_2_MSVC2019_64bit-Debug/ui_widget.h"
 }
 ]
