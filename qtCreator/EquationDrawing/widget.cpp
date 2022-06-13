@@ -1,5 +1,45 @@
 #include "widget.h"
 #include "ui_widget.h"
+#include <QDebug>
+
+QString addSpace(QString input)
+{
+    int mark = -1;
+    // num = 1
+    // char = 2
+    // else = 3
+
+    for (int i = 0; i < input.size(); i++)
+    {
+        if (input[i] <= '9' && input[i] >= '0')
+        {
+            if (mark != 1)
+            {
+                input.insert(i, " ");
+                mark = 1;
+                i++;
+            }
+        }
+        else if (((input[i] <= 'z' && input[i] >= 'a') || (input[i] <= 'Z' && input[i] >= 'A')))
+        {
+            if (mark != 2)
+            {
+                input.insert(i, " ");
+                mark = 2;
+                i++;
+            }
+        }
+        else
+        {
+            input.insert(i, " ");
+            mark = 3;
+            i++;
+        }
+    }
+
+    input.remove(0,1);
+    return input;
+}
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -103,6 +143,9 @@ void MyFrame::initialize()
     deleteFrame_btn->setFixedSize(QSize(btn_size, btn_size));
 
     equation = text->text();
+    //Gabriel
+    equation = addSpace(equation);
+    //qDebug()<<equation;
     drawGraph();
 }
 
@@ -136,6 +179,9 @@ void MyFrame::hideOption()
     equation = text->text();
     //QMessageBox::information(NULL,equation,equation);
     deleteGraph(); //enter new equation
+    //Gabriel
+    equation = addSpace(equation);
+   // qDebug()<<equation;
     drawGraph();
 }
 
