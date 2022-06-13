@@ -124,11 +124,16 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_axserver_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bluetooth.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bluetooth_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bodymovin_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bootstrap_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_charts.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_charts_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_concurrent.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_concurrent_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_core.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_core_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_datavisualization.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_datavisualization_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_dbus.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_dbus_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_designer.pri \
@@ -154,6 +159,8 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_network.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_network_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_networkauth.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_networkauth_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_nfc.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_nfc_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_opengl.pri \
@@ -168,6 +175,8 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_positioningquick_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_printsupport.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_printsupport_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_purchasing.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_purchasing_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qml.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qml_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qmldebug_private.pri \
@@ -180,6 +189,16 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3d.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3d_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dassetimport.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3drender.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3drender_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3druntimerender.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dutils.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dutils_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri \
@@ -193,6 +212,10 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_remoteobjects_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_repparser.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_repparser_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_script.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_script_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scripttools.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scripttools_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scxml.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scxml_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_sensors.pri \
@@ -213,9 +236,18 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uiplugin.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uitools.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uitools_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_virtualkeyboard.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_vulkan_support_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webchannel.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webchannel_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webengine.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webengine_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecore.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecore_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets.pri \
+		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_websockets.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_websockets_private.pri \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webview.pri \
@@ -234,6 +266,7 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\mkspecs\features\qt_config.prf \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc\qmake.conf \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\features\spec_post.prf \
+		.qmake.stash \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\features\exclusive_builds.prf \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\common\msvc-version.conf \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\features\toolchain.prf \
@@ -264,7 +297,6 @@ Makefile: ..\EquationDrawing\EquationDrawing.pro C:\QT\5.15.2\msvc2019_64\mkspec
 		C:\QT\5.15.2\msvc2019_64\lib\Qt5Gui.prl \
 		C:\QT\5.15.2\msvc2019_64\lib\Qt5Core.prl \
 		C:\QT\5.15.2\msvc2019_64\lib\qtmain.prl \
-		.qmake.stash \
 		C:\QT\5.15.2\msvc2019_64\mkspecs\features\build_pass.prf \
 		C:\QT\5.15.2\msvc2019_64\lib\Qt5PrintSupportd.prl \
 		C:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.prl \
@@ -312,11 +344,16 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_axserver.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_axserver_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bluetooth.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bluetooth_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bodymovin_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_bootstrap_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_charts.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_charts_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_concurrent.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_concurrent_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_core.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_core_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_datavisualization.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_datavisualization_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_dbus.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_dbus_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_designer.pri:
@@ -342,6 +379,8 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_multimediawidgets.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_network.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_network_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_networkauth.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_networkauth_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_nfc.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_nfc_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_opengl.pri:
@@ -356,6 +395,8 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_positioningquick.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_positioningquick_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_printsupport.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_printsupport_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_purchasing.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_purchasing_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qml.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qml_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qmldebug_private.pri:
@@ -368,6 +409,16 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3d.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3d_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dassetimport.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dassetimport_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3drender.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3drender_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3druntimerender.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3druntimerender_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dutils.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick3dutils_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quick_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri:
@@ -381,6 +432,10 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_remoteobjects.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_remoteobjects_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_repparser.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_repparser_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_script.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_script_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scripttools.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scripttools_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scxml.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_scxml_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_sensors.pri:
@@ -401,9 +456,18 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_theme_support_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uiplugin.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uitools.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_uitools_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_virtualkeyboard.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_virtualkeyboard_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_vulkan_support_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webchannel.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webchannel_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webengine.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webengine_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecore.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecore_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginecoreheaders_private.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets.pri:
+C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_websockets.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_websockets_private.pri:
 C:\QT\5.15.2\msvc2019_64\mkspecs\modules\qt_lib_webview.pri:
@@ -422,6 +486,7 @@ C:\QT\5.15.2\msvc2019_64\mkspecs\features\qt_functions.prf:
 C:\QT\5.15.2\msvc2019_64\mkspecs\features\qt_config.prf:
 C:\QT\5.15.2\msvc2019_64\mkspecs\win32-msvc\qmake.conf:
 C:\QT\5.15.2\msvc2019_64\mkspecs\features\spec_post.prf:
+.qmake.stash:
 C:\QT\5.15.2\msvc2019_64\mkspecs\features\exclusive_builds.prf:
 C:\QT\5.15.2\msvc2019_64\mkspecs\common\msvc-version.conf:
 C:\QT\5.15.2\msvc2019_64\mkspecs\features\toolchain.prf:
@@ -452,7 +517,6 @@ C:\QT\5.15.2\msvc2019_64\lib\Qt5Widgets.prl:
 C:\QT\5.15.2\msvc2019_64\lib\Qt5Gui.prl:
 C:\QT\5.15.2\msvc2019_64\lib\Qt5Core.prl:
 C:\QT\5.15.2\msvc2019_64\lib\qtmain.prl:
-.qmake.stash:
 C:\QT\5.15.2\msvc2019_64\mkspecs\features\build_pass.prf:
 C:\QT\5.15.2\msvc2019_64\lib\Qt5PrintSupportd.prl:
 C:\QT\5.15.2\msvc2019_64\lib\Qt5Widgetsd.prl:

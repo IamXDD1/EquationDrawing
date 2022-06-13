@@ -32,6 +32,7 @@ public:
 public slots:
 
 
+    void makeplot();
 private slots:
     void on_CreateFunction_clicked();
 
