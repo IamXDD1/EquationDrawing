@@ -52,11 +52,13 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../EquationDrawing/main.cpp \
+SOURCES       = ../EquationDrawing/NumProcess.cpp \
+		../EquationDrawing/main.cpp \
 		../EquationDrawing/qcustomplot.cpp \
 		../EquationDrawing/widget.cpp moc_qcustomplot.cpp \
 		moc_widget.cpp
-OBJECTS       = main.o \
+OBJECTS       = NumProcess.o \
+		main.o \
 		qcustomplot.o \
 		widget.o \
 		moc_qcustomplot.o \
@@ -241,6 +243,7 @@ DIST          = /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_pre.pr
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf \
+		../EquationDrawing/.qmake.stash \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf \
@@ -269,8 +272,10 @@ DIST          = /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_pre.pr
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/exceptions.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/yacc.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/lex.prf \
-		../EquationDrawing/EquationDrawing.pro ../EquationDrawing/qcustomplot.h \
-		../EquationDrawing/widget.h ../EquationDrawing/main.cpp \
+		../EquationDrawing/EquationDrawing.pro ../EquationDrawing/NumProcess.h \
+		../EquationDrawing/qcustomplot.h \
+		../EquationDrawing/widget.h ../EquationDrawing/NumProcess.cpp \
+		../EquationDrawing/main.cpp \
 		../EquationDrawing/qcustomplot.cpp \
 		../EquationDrawing/widget.cpp
 QMAKE_TARGET  = EquationDrawing
@@ -475,6 +480,7 @@ Makefile: ../EquationDrawing/EquationDrawing.pro /Users/yenyenyeh/Qt/5.15.2/clan
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf \
@@ -689,6 +695,7 @@ Makefile: ../EquationDrawing/EquationDrawing.pro /Users/yenyenyeh/Qt/5.15.2/clan
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/qt_config.prf:
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/macx-clang/qmake.conf:
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/exclusive_builds.prf:
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/toolchain.prf:
@@ -752,8 +759,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../EquationDrawing/qcustomplot.h ../EquationDrawing/widget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../EquationDrawing/main.cpp ../EquationDrawing/qcustomplot.cpp ../EquationDrawing/widget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../EquationDrawing/NumProcess.h ../EquationDrawing/qcustomplot.h ../EquationDrawing/widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../EquationDrawing/NumProcess.cpp ../EquationDrawing/main.cpp ../EquationDrawing/qcustomplot.cpp ../EquationDrawing/widget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../EquationDrawing/widget.ui $(DISTDIR)/
 
 
@@ -764,6 +771,7 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) -r EquationDrawing.app
+	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -860,6 +868,9 @@ compiler_lex_clean:
 compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
+
+NumProcess.o: ../EquationDrawing/NumProcess.cpp ../EquationDrawing/NumProcess.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o NumProcess.o ../EquationDrawing/NumProcess.cpp
 
 main.o: ../EquationDrawing/main.cpp ../EquationDrawing/widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/QWidget \
