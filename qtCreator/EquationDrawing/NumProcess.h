@@ -10,6 +10,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <sstream>
+#include <QString>
 
 using std::cin;
 using std::cout;
@@ -57,7 +58,7 @@ class Calculator {
 public:
     static map<string, Number> exist_var;
     string show_exist;
-    void RUN();
+    void RUN(QString equation);
     static Number Input(bool& equal, string inputStr);
     static string judgeFormat(string infix); //判斷名字 若有變數則直接替換
 

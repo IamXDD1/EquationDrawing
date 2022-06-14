@@ -1,21 +1,19 @@
 #include "NumProcess.h"
+#include <QString>
 
 using namespace std;
 
 //cal
 map<string, Number> Calculator::exist_var;
 
-void Calculator::RUN()
+void Calculator::RUN(QString equation)
 {
-    while (true)
-    {
-        bool equal = false;
-        string str;
-        getline(cin, str);
-        // have been editted by Gabriel
-        Number ans(Input(equal, str));
-        if (!equal) Output(ans);
-    }
+    bool equal = false;
+    string str;
+    str = equation.toStdString();
+    // have been editted by Gabriel
+    Number ans(Input(equal, str));
+    if (!equal) Output(ans);
 }
 
 auto Calculator::is_Var_exist(string name)
