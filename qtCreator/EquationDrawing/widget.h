@@ -9,6 +9,11 @@
 #include <QList>
 #include <QMetaType>
 #include <qcustomplot.h>
+#include <QDebug>
+#include <QColor>
+#include <QPen>
+#include <QPair>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -18,9 +23,24 @@ class MyFrame;
 
 static int row_count = 0;
 static int graph_count = 0;
-static QList<MyFrame*> FrameList;
+static QList<MyFrame*> FrameList; // save things in frame including variable
 
-class Widget : public QWidget
+class NumberProcess {
+public:
+    QString addSpace(QString input);
+    //variable declare  ->  1.from top to down  2.Error: undeclare, redeclare
+    //basic calculate  ->  Error: wrong format
+    //sin() cos() tan() calculate  ->  Error: wrong format
+};
+
+class Variable {
+public:
+    QString name;
+    QString equation;
+    Variable(QString left, QString right):name(left), equation(right){};
+}; // need to declare in MyFrame ??
+
+class Widget : public QWidget, public NumberProcess
 {
     Q_OBJECT
 
@@ -45,14 +65,14 @@ private:
 
 };
 
-class MyFrame : public QFrame {
+class MyFrame : public QFrame, public NumberProcess {
     Q_OBJECT
 public:
     //explicit MyFrame(QObject *parent = 0);
 
     QPushButton* color_btn,* showGraph_btn,* deleteFrame_btn;
     QLineEdit* text;
-    QString r,g,b;
+    int r,g,b;
     bool isEquationShow;
     QString image_path = "C:/Users/XDD/Desktop/EquationDrawing/EquationDrawing/QTcreator/EquationDrawing/image/";
     QString equation;
@@ -67,13 +87,14 @@ public:
         delete deleteFrame_btn;
         delete text;
     }
-
+private:
     void initialize();
+public:
+    void judgeError();
     inline void emitDrawing(){ emit drawGraph(this->equation, this->graph_index); }
-    inline void emitShowing(){ emit showGraph(this->graph_index); }
-    inline void emitHiding(){ emit hideGraph(this->graph_index); }
+    inline void emitShowing(){ color_btn->setText(" "); emit showGraph(this->graph_index); }
+    inline void emitHiding(){ color_btn->setText("X"); emit hideGraph(this->graph_index); }  //may recover "E"
     inline void emitdeleting(){ emit deleteGraph(this->graph_index); }
-
 
 public slots:
     void showOption();
