@@ -1,8 +1,8 @@
 #include "widget.h"
 #include "ui_widget.h"
-#include <QDebug>
 
-QString addSpace(QString input)
+
+QString NumberProcess::addSpace(QString input)
 {
     int mark = -1;
     // num = 1
@@ -41,6 +41,8 @@ QString addSpace(QString input)
     return input;
 }
 
+//===============================================================================================================
+
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Widget)
@@ -53,6 +55,7 @@ Widget::Widget(QWidget *parent)
 
 Widget::~Widget()
 {
+    ui->customPlot->clearGraphs();
     delete ui;
 }
 
@@ -82,6 +85,7 @@ void Widget::createFrame(){
     frame->resize(460,30);
     frame->move(500,80+row_count*30);
     frame->show();
+    ui->customPlot->graph(frame->graph_index)->setPen(QPen(QColor(frame->r,frame->g,frame->b)));
 
     FrameList.append(frame);
 
@@ -111,7 +115,6 @@ void Widget::drawing(QString equation, int graph_idx)
       y[i] = num; // let's plot a quadratic function
     }
     // create graph and assign data to it:
-    ui->customPlot->addGraph();
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
 
@@ -146,10 +149,10 @@ void MyFrame::initialize()
 
     color_btn = new QPushButton;
     color_btn->setParent(this);
-    r = QString::number(rand()%256);
-    g = QString::number(rand()%256);
-    b = QString::number(rand()%256);
-    color_btn->setStyleSheet("background-color: rgb(" + r + ", " + g + ", " + b + ");");
+    r = rand()%256;
+    g = rand()%256;
+    b = rand()%256;
+    color_btn->setStyleSheet("background-color: rgb(" + QString::number(r) + ", " + QString::number(g) + ", " + QString::number(b) + ");");
     color_btn->resize(btn_size,btn_size);
     color_btn->move(0,1);
     color_btn->show();
@@ -182,6 +185,15 @@ void MyFrame::initialize()
 
     equation = text->text();
     equation = addSpace(equation);
+    color_btn->setText(" ");
+}
+
+void MyFrame::judgeError()
+{
+    // if error
+    color_btn->setText("E");
+    // else
+    color_btn->setText(" ");
 }
 
 void MyFrame::deleteFrame(){
@@ -205,7 +217,7 @@ void MyFrame::showOption()
     deleteFrame_btn->show();
 }
 
-void MyFrame::hideOption()
+void MyFrame::hideOption() // press enter
 {
     text->setCursorPosition(0);
     showGraph_btn->hide();
