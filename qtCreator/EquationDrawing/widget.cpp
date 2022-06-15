@@ -48,6 +48,7 @@ Widget::Widget(QWidget *parent)
     ui->setupUi(this);
     Widget::makeplot();
     row_count = 0;
+    graph_count = 0;
 }
 
 Widget::~Widget()
@@ -55,29 +56,27 @@ Widget::~Widget()
     delete ui;
 }
 
+void Widget::on_CreateFunction_clicked()
+{
+    createFrame();
+    row_count++;
+    graph_count++;
+}
+
 void Widget::makeplot(){
-    // generate some data:
-    QVector<double> x(201), y(201); // initialize with entries 0..100
-    for (int i=0; i<201; ++i)
-    {
-      x[i] = i/50.0 - 2; // x goes from -1 to 1
-      y[i] = sin(x[i]); // let's plot a quadratic function
-    }
-    // create graph and assign data to it:
-    ui->customPlot->addGraph();
-    ui->customPlot->graph(0)->setData(x, y);
     // give the axes some labels:
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
     // set axes ranges, so we see all data:
     ui->customPlot->xAxis->setRange(-1, 1);
-    ui->customPlot->yAxis->setRange(0, 1);
+    ui->customPlot->yAxis->setRange(-1, 1);
     ui->customPlot->setInteraction(QCP::iRangeDrag,true);
     ui->customPlot->setInteraction(QCP::iRangeZoom,true);
     ui->customPlot->replot();
 }
 
 void Widget::createFrame(){
+    ui->customPlot->addGraph();
     MyFrame* frame = new MyFrame(this);
     frame->setParent(this);
     frame->resize(460,30);
@@ -86,23 +85,62 @@ void Widget::createFrame(){
 
     FrameList.append(frame);
 
-    //this->addAction();
-
     connect(frame->text, SIGNAL(cursorPositionChanged(int,int)), frame, SLOT(showOption()));
     connect(frame->text, SIGNAL(returnPressed()), frame, SLOT(hideOption()));
     connect(frame->showGraph_btn, SIGNAL(clicked()), frame, SLOT(changeIcon()));
     connect(frame->deleteFrame_btn, SIGNAL(clicked()), frame, SLOT(deleteFrame()));
     connect(frame->deleteFrame_btn, SIGNAL(clicked()), frame, SLOT(deleteLater()));
+    connect(frame, SIGNAL(drawGraph(QString, int)), this, SLOT(drawing(QString, int)));
+    connect(frame, SIGNAL(showGraph(int)), this, SLOT(showing(int)));
+    connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
+    connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
+
+    frame->emitDrawing();
 }
 
-void Widget::on_CreateFunction_clicked()
+void Widget::drawing(QString equation, int graph_idx)
 {
-    createFrame();
-    row_count++;
+    QString temp = "" + equation[equation.size()-1];
+    int num = temp.toInt();
+    //QMessageBox::information(NULL,equation,equation);
+
+    QVector<double> x(20001), y(20001); // initialize with entries 0..100
+    for (int i=0; i<20001; ++i)
+    {
+      x[i] = i; // x goes from -1 to 1
+      y[i] = num; // let's plot a quadratic function
+    }
+    // create graph and assign data to it:
+    ui->customPlot->addGraph();
+    ui->customPlot->graph(graph_idx)->setData(x, y);
+    ui->customPlot->replot();
+
 }
+
+void Widget::showing(int graph_idx)
+{
+    ui->customPlot->graph(graph_idx)->setVisible(true);
+    ui->customPlot->replot();
+}
+
+void Widget::hiding(int graph_idx)
+{
+    ui->customPlot->graph(graph_idx)->setVisible(false);
+    ui->customPlot->replot();
+}
+
+void Widget::deleting(int graph_idx)
+{
+    ui->customPlot->graph(graph_idx)->data()->clear();
+    ui->customPlot->replot();
+}
+
+
+//===============================================================================================================
 
 void MyFrame::initialize()
 {
+    graph_index = graph_count;
     isEquationShow = true;
     int btn_size = 28;
 
@@ -143,10 +181,7 @@ void MyFrame::initialize()
     deleteFrame_btn->setFixedSize(QSize(btn_size, btn_size));
 
     equation = text->text();
-    //Gabriel
     equation = addSpace(equation);
-    //qDebug()<<equation;
-    drawGraph();
 }
 
 void MyFrame::deleteFrame(){
@@ -161,7 +196,7 @@ void MyFrame::deleteFrame(){
             FrameList[i]->move(500,80+i*30);
         }
     }
-    deleteGraph();
+    emitdeleting();
 }
 
 void MyFrame::showOption()
@@ -177,12 +212,10 @@ void MyFrame::hideOption()
     deleteFrame_btn->hide();
 
     equation = text->text();
-    //QMessageBox::information(NULL,equation,equation);
-    deleteGraph(); //enter new equation
-    //Gabriel
     equation = addSpace(equation);
-   // qDebug()<<equation;
-    drawGraph();
+    //QMessageBox::information(NULL,equation,equation);
+    emitdeleting(); //enter new equation
+    emitDrawing();
 }
 
 void MyFrame::changeIcon()
@@ -190,33 +223,11 @@ void MyFrame::changeIcon()
     if(isEquationShow){
         isEquationShow = false;
         showGraph_btn->setIcon(QIcon(image_path + "hide equation.png"));
-        hideGraph();
+        emitHiding();
     }
     else{
         isEquationShow = true;
         showGraph_btn->setIcon(QIcon(image_path + "show equation.png"));
-        showGraph();
+        emitShowing();
     }
-}
-
-void MyFrame::showGraph()
-{
-    //TODO...
-}
-
-void MyFrame::hideGraph()
-{
-    //TODO...
-}
-
-void MyFrame::drawGraph()
-{
-    //TODO...
-    showGraph();
-}
-
-void MyFrame::deleteGraph()
-{
-    //TODO...
-    hideGraph();
 }
