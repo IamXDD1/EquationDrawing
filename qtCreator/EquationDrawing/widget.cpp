@@ -183,9 +183,20 @@ void MyFrame::initialize()
     deleteFrame_btn->setIconSize(QSize(btn_size, btn_size));
     deleteFrame_btn->setFixedSize(QSize(btn_size, btn_size));
 
-    equation = text->text();
-    equation = addSpace(equation);
+    splitEqualSign(text->text());
+
     color_btn->setText(" ");
+}
+
+void MyFrame::splitEqualSign(QString temp)
+{
+    for(int i=0; i<temp.size(); i++){
+        if(temp[i] == '='){
+            var.name = temp.mid(0,i);
+            var.equation = temp.mid(i+1,temp.size()-i-1);
+        }
+    }
+    var.equation = addSpace(var.equation);
 }
 
 void MyFrame::judgeError()
@@ -223,9 +234,10 @@ void MyFrame::hideOption() // press enter
     showGraph_btn->hide();
     deleteFrame_btn->hide();
 
-    equation = text->text();
-    equation = addSpace(equation);
+    splitEqualSign(text->text());
+
     //QMessageBox::information(NULL,equation,equation);
+
     emitdeleting(); //enter new equation
     emitDrawing();
 }
