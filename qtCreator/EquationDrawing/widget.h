@@ -36,8 +36,9 @@ public:
 struct Variable {
     QString name;
     QString equation;
-    Variable(QString left, QString right):name(left), equation(right){};
-    Variable():name(""),equation(""){};
+    QString temp;
+    Variable(QString left, QString right):name(left), equation(right), temp(""){};
+    Variable():name(""),equation(""),temp(""){};
 }; // need to declare in MyFrame ??
 
 class Widget : public QWidget, public NumberProcess
@@ -91,6 +92,8 @@ private:
     void splitEqualSign(QString str);
 public:
     void judgeError();
+    bool isSaveWord(QString name);
+    void replaceVar();
     inline void emitDrawing(){ emit drawGraph(this->var.equation, this->graph_index); }
     inline void emitShowing(){ color_btn->setText(" "); emit showGraph(this->graph_index); }
     inline void emitHiding(){ color_btn->setText("X"); emit hideGraph(this->graph_index); }  //may recover "E"
