@@ -33,11 +33,11 @@ public:
     //sin() cos() tan() calculate  ->  Error: wrong format
 };
 
-class Variable {
-public:
+struct Variable {
     QString name;
     QString equation;
     Variable(QString left, QString right):name(left), equation(right){};
+    Variable():name(""),equation(""){};
 }; // need to declare in MyFrame ??
 
 class Widget : public QWidget, public NumberProcess
@@ -62,7 +62,6 @@ private slots:
     void on_CreateFunction_clicked();
 
 private:
-
 };
 
 class MyFrame : public QFrame, public NumberProcess {
@@ -75,7 +74,7 @@ public:
     int r,g,b;
     bool isEquationShow;
     QString image_path = "C:/Users/XDD/Desktop/EquationDrawing/EquationDrawing/QTcreator/EquationDrawing/image/";
-    QString equation;
+    Variable var;
     int graph_index;
 
     MyFrame(QWidget *parent = nullptr) {
@@ -89,9 +88,10 @@ public:
     }
 private:
     void initialize();
+    void splitEqualSign(QString str);
 public:
     void judgeError();
-    inline void emitDrawing(){ emit drawGraph(this->equation, this->graph_index); }
+    inline void emitDrawing(){ emit drawGraph(this->var.equation, this->graph_index); }
     inline void emitShowing(){ color_btn->setText(" "); emit showGraph(this->graph_index); }
     inline void emitHiding(){ color_btn->setText("X"); emit hideGraph(this->graph_index); }  //may recover "E"
     inline void emitdeleting(){ emit deleteGraph(this->graph_index); }
