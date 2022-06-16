@@ -192,8 +192,6 @@ void MyFrame::initialize()
     deleteFrame_btn->setFixedSize(QSize(btn_size, btn_size));
 
     splitEqualSign(text->text());
-
-    color_btn->setText(" ");
 }
 
 void MyFrame::splitEqualSign(QString temp)
@@ -202,17 +200,72 @@ void MyFrame::splitEqualSign(QString temp)
         if(temp[i] == '='){
             var.name = temp.mid(0,i);
             var.equation = temp.mid(i+1,temp.size()-i-1);
+            break;
         }
     }
     var.equation = addSpace(var.equation);
+    judgeError();
+}
+bool MyFrame::isSaveWord(QString name)
+{
+    if(name != "y" && name != "x" && name != "x^2+y^2") return false;
+    else return true;
+}
+
+void MyFrame::replaceVar()
+{
+    var.temp = "( ";
+
+    QTextStream Qss(&var.equation);
+    QString str;
+    for(;!Qss.atEnd();)
+    {
+        Qss >> str;
+        QString toReplace = str;
+        for(int i=0; i<FrameList.count(); i++){
+            if(FrameList[i]->color_btn->text() == "E") continue; // if error -> skip
+            if(FrameList[i] == this){
+                if(this->var.name == str)
+                this->color_btn->setText(" ");
+                break;
+            }
+            else{
+                // var redefine
+                if(this->var.name == FrameList[i]->var.name && !isSaveWord(this->var.name)) {
+                    //toReplace = str;
+                    this->color_btn->setText("E");
+                    break;
+                }
+                else{
+                    this->color_btn->setText(" ");
+                }
+            }
+            if(FrameList[i]->var.name == str){
+                toReplace = FrameList[i]->var.temp;
+            }
+        }
+        var.temp += toReplace + ' ';
+    }
+    var.temp += ')';
 }
 
 void MyFrame::judgeError()
 {
+    emitdeleting(); //enter new equation
+    if(this->var.equation == "" || this->var.name == "") {
+        this->color_btn->setText("E");
+        return;
+    }
+
+    replaceVar();
+
+    QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
     // if error
-    color_btn->setText("E");
+    //color_btn->setText("E");
+
     // else
-    color_btn->setText(" ");
+    //color_btn->setText(" ");
+    //emitDrawing();
 }
 
 void MyFrame::deleteFrame(){
@@ -245,9 +298,6 @@ void MyFrame::hideOption() // press enter
     splitEqualSign(text->text());
 
     //QMessageBox::information(NULL,equation,equation);
-
-    emitdeleting(); //enter new equation
-    emitDrawing();
 }
 
 void MyFrame::changeIcon()
@@ -255,11 +305,13 @@ void MyFrame::changeIcon()
     if(isEquationShow){
         isEquationShow = false;
         showGraph_btn->setIcon(QIcon(image_path + "hide equation.png"));
+        color_btn->setText("X");
         emitHiding();
     }
     else{
         isEquationShow = true;
         showGraph_btn->setIcon(QIcon(image_path + "show equation.png"));
+        color_btn->setText(" ");
         emitShowing();
     }
 }
