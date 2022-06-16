@@ -26,6 +26,7 @@ auto Calculator::is_Var_exist(string name)
         return it;
     }
 }
+
 string process_Power(string front, string back) {
 
     //撠�敺�銝脣�銝璅��鈭� ������摮葡� -> front + "^ " + back
@@ -108,7 +109,7 @@ Number Calculator::Input(bool& equal, string inputStr)
     regex NewVar("\w+");
     std::size_t found = inputStr.find('=');
     if (found != std::string::npos) {
-        equal = true;
+        equal = true; // change into can_draw in order to makes it more meaningful in this case. to identify if it can be drawn
         input << inputStr;
         string temp;
         string returnSTR;
@@ -117,6 +118,11 @@ Number Calculator::Input(bool& equal, string inputStr)
         while (input >> temp) {
             allstr.push_back(temp); //撠撓�亙�銝脫��component�嫣噶��
         }
+
+        //verify if the equation can draw , in other word, the variable(s) are (x,y) or const
+        //need to add variable to map
+
+        /*
         if ((allstr[0] == "Set" && allstr[1] == "Integer") && (regex_match(allstr[2], NewVar) || allstr[3] == "=")) { //Set Integer [Var] = formula
             Number temp;
             temp.name = allstr[2];
@@ -166,7 +172,9 @@ Number Calculator::Input(bool& equal, string inputStr)
                 exist_var.emplace(temp.name, temp);
             }
         }
-        else if (regex_match(allstr[0], NewVar) || allstr[1] == "=") { // [var] = formula
+        */
+        //else
+        if (regex_match(allstr[0], NewVar) || allstr[1] == "=") { // [var] = formula
             auto it = is_Var_exist(allstr[0]);
             for (int i = 2; i < allstr.size(); i++) {
                 returnSTR += allstr[i];
@@ -188,6 +196,7 @@ Number Calculator::Input(bool& equal, string inputStr)
         return toReturn;
     }
     else {
+        // throw "Error: not an equation";
         equal = false;
         inputStr = process_Power(inputStr, "");
         inputStr = judgeFormat(inputStr);
@@ -197,6 +206,15 @@ Number Calculator::Input(bool& equal, string inputStr)
 
 string Calculator::judgeFormat(string infix)
 {
+    // not an equation
+    regex equation_mark("/ = /g");
+    if(!regex_match(infix, equation_mark)) throw "Error: No \"=\" in the equation";
+    /*
+    constant equation ex. a=3
+    regex x_co("/ x /g"), y_co("/ y /g");
+    if((!regex_match(infix, x_co))&&(!regex_match(infix, y_co)))
+    */
+
     istringstream in(infix);
     ostringstream toReturn;
     int countLParentheses = 0;  //閮�撌血�祈��賊��臬�貊泵
@@ -212,10 +230,7 @@ string Calculator::judgeFormat(string infix)
         if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-')) {
             Number sub(part);
             var_temp = sub;
-            if (!sub.Integer)
-            {
-                var_temp.Integer = false;
-            }
+            if (!sub.Integer) var_temp.Integer = false;
             if (divide && (var_temp.Integer && var_temp.getNum() == "0")) throw "Error: Can't divide zero.";
             if (number) throw "Error: Two numbers connect.";
             if (minus) {
@@ -292,6 +307,7 @@ string Calculator::judgeFormat(string infix)
     if (countLParentheses != countRParentheses) throw "Incomplete parentheses.";
     return toReturn.str();
 }
+
 bool Calculator::isVariable(string str) {
     for (auto i : exist_var) {
         if (i.first == str) {
@@ -300,6 +316,7 @@ bool Calculator::isVariable(string str) {
     }
     return false;
 }
+
 Number Calculator::calculate(string posfix)
 {
     istringstream istr(posfix);
@@ -494,7 +511,7 @@ void Calculator::test()
     }
 }
 
-
+//===============================================================================================================
 //num
 
 string doStrPlus(string a, string b);
@@ -629,14 +646,8 @@ Number Number::operator+(Number a)
         }
 
         // tell whether the return is + or -
-        if (a.negative) // -
-        {
-            toReturn.negative = true;
-        }
-        else // +
-        {
-            toReturn.negative = false;
-        }
+        if (a.negative)  toReturn.negative = true; // -
+        else  toReturn.negative = false; // +
 
         // operating begins
         int timesToDo;
@@ -656,16 +667,12 @@ Number Number::operator+(Number a)
         if (a.num.size() > this->num.size())
         {
             while (subA.num.size() > subThis.num.size())
-            {
                 subThis.num.insert(subThis.num.begin(), '0');
-            }
         }
         if (a.num.size() < subThis.num.size())
         {
             while (subA.num.size() < this->num.size())
-            {
                 subA.num.insert(subA.num.begin(), '0');
-            }
         }
 
         // format
@@ -750,27 +757,15 @@ Number Number::operator+(Number a)
                 ssSubA >> SecNum;
 
                 int sum = firNum + SecNum + carry;
-                if (sum >= 10)
-                {
-                    carry = 1;
-                }
-                else
-                {
-                    carry = 0;
-                }
+                if (sum >= 10) carry = 1;
+                else carry = 0;
                 ssToRe << sum % 10; // need to be reversed
-                if (ssSubThis.eof())
-                {
-                    break;
-                }
+                if (ssSubThis.eof())  break;
             }
 
             if (timesToDo == 1 || i == 1) // only when doing with "num" can do this
             {
-                if (carry != 0)
-                {
-                    ssToRe << carry;
-                }
+                if (carry != 0) ssToRe << carry;
             }
 
             string temp;
@@ -792,14 +787,8 @@ Number Number::operator+(Number a)
             }
             else // dec
             {
-                if (i == 0)
-                {
-                    toReturn.decimal = temp;
-                }
-                else
-                {
-                    toReturn.num = temp;
-                }
+                if (i == 0) toReturn.decimal = temp;
+                else toReturn.num = temp;
             }
         }
     }
@@ -813,7 +802,6 @@ Number Number::operator+(Number a)
         else // neg + pos
         {
             subThis.negative = false;
-
             toReturn = subA - subThis;
         }
     }
@@ -822,9 +810,7 @@ Number Number::operator+(Number a)
     toReturn.deDecimal = toReturn.deDecimal.substr(0, 114);
 
     while (toReturn.decimal.size() < 114)
-    {
         toReturn.decimal.push_back('0');
-    }
 
     //cout << toReturn.num << endl << toReturn.decimal << endl;
     return toReturn;
@@ -889,10 +875,7 @@ Number Number::operator-(Number a)
         {
             deleNum++;
         }
-        if (deleNum != 0)
-        {
-            toReturn.deNum.erase(0, deleNum);
-        }
+        if (deleNum != 0) toReturn.deNum.erase(0, deleNum);
         toReturn.deDecimal = subThis.deDecimal.substr(0, 114);
 
         if (this->num.size() < a.num.size())
@@ -1058,10 +1041,7 @@ Number Number::operator-(Number a)
                 temp.erase(temp.begin(), temp.begin() + leadingZeroAmount);
             }
 
-            if (temp.empty())
-            {
-                temp.push_back('0');
-            }
+            if (temp.empty())  temp.push_back('0');
 
             if (timesToDo == 1) // int
             {
@@ -1081,10 +1061,7 @@ Number Number::operator-(Number a)
                         toReturn.decimal.push_back('0');
                     }
                 }
-                else
-                {
-                    toReturn.num = temp;
-                }
+                else toReturn.num = temp;
             }
         }
     }
@@ -1108,27 +1085,15 @@ Number Number::operator*(Number a)
     }
     string sum;
 
-    if (!this->negative && a.negative)
-    {
-        toReturn.negative = true;
-    }
-    else if (this->negative && !a.negative)
-    {
-        toReturn.negative = true;
-    }
-    else
-    {
-        toReturn.negative = false;
-    }
+    if (!this->negative && a.negative) toReturn.negative = true;
+    else if (this->negative && !a.negative) toReturn.negative = true;
+    else toReturn.negative = false;
 
     // 分子乘分子
     int deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subA.decimal[i] != '0')
-        {
-            break;
-        }
+        if (subA.decimal[i] != '0') break;
         deleZero++;
     }
 
@@ -1138,10 +1103,7 @@ Number Number::operator*(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subThis.decimal[i] != '0')
-        {
-            break;
-        }
+        if (subThis.decimal[i] != '0')  break;
         deleZero++;
     }
     subThis.decimal.erase(subThis.decimal.end() - deleZero, subThis.decimal.end());
@@ -1164,10 +1126,7 @@ Number Number::operator*(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subA.deDecimal[i] != '0')
-        {
-            break;
-        }
+        if (subA.deDecimal[i] != '0') break;
         deleZero++;
     }
 
@@ -1177,10 +1136,7 @@ Number Number::operator*(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subThis.deDecimal[i] != '0')
-        {
-            break;
-        }
+        if (subThis.deDecimal[i] != '0')  break;
         deleZero++;
     }
     subThis.deDecimal.erase(subThis.deDecimal.end() - deleZero, subThis.deDecimal.end());
@@ -1209,14 +1165,8 @@ Number Number::operator*(Number a)
         mayEqualZero = true;
     }
 
-    if (this->Integer && a.Integer)
-    {
-        toReturn.Integer = true;
-    }
-    else
-    {
-        toReturn.Integer = false;
-    }
+    if (this->Integer && a.Integer) toReturn.Integer = true;
+    else toReturn.Integer = false;
 
     while (toReturn.decimal.size() < 114)
     {
@@ -1235,10 +1185,7 @@ Number Number::operator*(Number a)
         }
     }
 
-    if (mayEqualZero)
-    {
-        toReturn.negative = false;
-    }
+    if (mayEqualZero) toReturn.negative = false;
     //cout << toReturn.num << endl << toReturn.decimal << endl << toReturn.deNum << endl << toReturn.deDecimal << endl;
     return toReturn;
 }
@@ -1258,27 +1205,15 @@ Number Number::operator/(Number a)
     }
     string sum;
 
-    if (!this->negative && a.negative)
-    {
-        toReturn.negative = true;
-    }
-    else if (this->negative && !a.negative)
-    {
-        toReturn.negative = true;
-    }
-    else
-    {
-        toReturn.negative = false;
-    }
+    if (!this->negative && a.negative) toReturn.negative = true;
+    else if (this->negative && !a.negative) toReturn.negative = true;
+    else toReturn.negative = false;
 
     // 分母乘分子
     int deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subA.decimal[i] != '0')
-        {
-            break;
-        }
+        if (subA.decimal[i] != '0') break;
         deleZero++;
     }
 
@@ -1288,10 +1223,7 @@ Number Number::operator/(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subThis.deDecimal[i] != '0')
-        {
-            break;
-        }
+        if (subThis.deDecimal[i] != '0') break;
         deleZero++;
     }
     subThis.deDecimal.erase(subThis.deDecimal.end() - deleZero, subThis.deDecimal.end());
@@ -1312,10 +1244,7 @@ Number Number::operator/(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subA.deDecimal[i] != '0')
-        {
-            break;
-        }
+        if (subA.deDecimal[i] != '0') break;
         deleZero++;
     }
 
@@ -1325,10 +1254,7 @@ Number Number::operator/(Number a)
     deleZero = 0;
     for (int i = 99; i >= 0; i--)
     {
-        if (subThis.decimal[i] != '0')
-        {
-            break;
-        }
+        if (subThis.decimal[i] != '0') break;
         deleZero++;
     }
     subThis.decimal.erase(subThis.decimal.end() - deleZero, subThis.decimal.end());
@@ -1357,14 +1283,8 @@ Number Number::operator/(Number a)
         mayEqualZero = true;
     }
 
-    if (this->Integer && a.Integer)
-    {
-        toReturn.Integer = true;
-    }
-    else
-    {
-        toReturn.Integer = false;
-    }
+    if (this->Integer && a.Integer) toReturn.Integer = true;
+    else toReturn.Integer = false;
 
     while (toReturn.decimal.size() < 114)
     {
@@ -1383,13 +1303,9 @@ Number Number::operator/(Number a)
         }
     }
 
-    if (mayEqualZero)
-    {
-        toReturn.negative = false;
-    }
+    if (mayEqualZero) toReturn.negative = false;
 
     //cout << toReturn.num << endl << toReturn.decimal << endl << toReturn.deNum << endl << toReturn.deDecimal << endl;
-
     return toReturn;
 }
 

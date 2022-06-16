@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[4];
-    char stringdata0[43];
+    QByteArrayData data[10];
+    char stringdata0[94];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,10 +35,18 @@ static const qt_meta_stringdata_Widget_t qt_meta_stringdata_Widget = {
 QT_MOC_LITERAL(0, 0, 6), // "Widget"
 QT_MOC_LITERAL(1, 7, 8), // "makeplot"
 QT_MOC_LITERAL(2, 16, 0), // ""
-QT_MOC_LITERAL(3, 17, 25) // "on_CreateFunction_clicked"
+QT_MOC_LITERAL(3, 17, 7), // "drawing"
+QT_MOC_LITERAL(4, 25, 8), // "equation"
+QT_MOC_LITERAL(5, 34, 9), // "graph_idx"
+QT_MOC_LITERAL(6, 44, 7), // "showing"
+QT_MOC_LITERAL(7, 52, 6), // "hiding"
+QT_MOC_LITERAL(8, 59, 8), // "deleting"
+QT_MOC_LITERAL(9, 68, 25) // "on_CreateFunction_clicked"
 
     },
-    "Widget\0makeplot\0\0on_CreateFunction_clicked"
+    "Widget\0makeplot\0\0drawing\0equation\0"
+    "graph_idx\0showing\0hiding\0deleting\0"
+    "on_CreateFunction_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -48,7 +56,7 @@ static const uint qt_meta_data_Widget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -56,11 +64,19 @@ static const uint qt_meta_data_Widget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a /* Public */,
-       3,    0,   25,    2, 0x08 /* Private */,
+       1,    0,   44,    2, 0x0a /* Public */,
+       3,    2,   45,    2, 0x0a /* Public */,
+       6,    1,   50,    2, 0x0a /* Public */,
+       7,    1,   53,    2, 0x0a /* Public */,
+       8,    1,   56,    2, 0x0a /* Public */,
+       9,    0,   59,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,    4,    5,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    5,
     QMetaType::Void,
 
        0        // eod
@@ -73,11 +89,14 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->makeplot(); break;
-        case 1: _t->on_CreateFunction_clicked(); break;
+        case 1: _t->drawing((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 2: _t->showing((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: _t->hiding((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->deleting((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->on_CreateFunction_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject Widget::staticMetaObject = { {
@@ -109,19 +128,19 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 6;
     }
     return _id;
 }
 struct qt_meta_stringdata_MyFrame_t {
-    QByteArrayData data[6];
-    char stringdata0[54];
+    QByteArrayData data[12];
+    char stringdata0[113];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -131,15 +150,23 @@ struct qt_meta_stringdata_MyFrame_t {
 static const qt_meta_stringdata_MyFrame_t qt_meta_stringdata_MyFrame = {
     {
 QT_MOC_LITERAL(0, 0, 7), // "MyFrame"
-QT_MOC_LITERAL(1, 8, 10), // "showOption"
-QT_MOC_LITERAL(2, 19, 0), // ""
-QT_MOC_LITERAL(3, 20, 10), // "hideOption"
-QT_MOC_LITERAL(4, 31, 10), // "changeIcon"
-QT_MOC_LITERAL(5, 42, 11) // "deleteFrame"
+QT_MOC_LITERAL(1, 8, 9), // "drawGraph"
+QT_MOC_LITERAL(2, 18, 0), // ""
+QT_MOC_LITERAL(3, 19, 12), // "str_equation"
+QT_MOC_LITERAL(4, 32, 3), // "idx"
+QT_MOC_LITERAL(5, 36, 9), // "showGraph"
+QT_MOC_LITERAL(6, 46, 9), // "hideGraph"
+QT_MOC_LITERAL(7, 56, 11), // "deleteGraph"
+QT_MOC_LITERAL(8, 68, 10), // "showOption"
+QT_MOC_LITERAL(9, 79, 10), // "hideOption"
+QT_MOC_LITERAL(10, 90, 10), // "changeIcon"
+QT_MOC_LITERAL(11, 101, 11) // "deleteFrame"
 
     },
-    "MyFrame\0showOption\0\0hideOption\0"
-    "changeIcon\0deleteFrame"
+    "MyFrame\0drawGraph\0\0str_equation\0idx\0"
+    "showGraph\0hideGraph\0deleteGraph\0"
+    "showOption\0hideOption\0changeIcon\0"
+    "deleteFrame"
 };
 #undef QT_MOC_LITERAL
 
@@ -149,18 +176,30 @@ static const uint qt_meta_data_MyFrame[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       8,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       4,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    2,   54,    2, 0x06 /* Public */,
+       5,    1,   59,    2, 0x06 /* Public */,
+       6,    1,   62,    2, 0x06 /* Public */,
+       7,    1,   65,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x0a /* Public */,
-       3,    0,   35,    2, 0x0a /* Public */,
-       4,    0,   36,    2, 0x0a /* Public */,
-       5,    0,   37,    2, 0x0a /* Public */,
+       8,    0,   68,    2, 0x0a /* Public */,
+       9,    0,   69,    2, 0x0a /* Public */,
+      10,    0,   70,    2, 0x0a /* Public */,
+      11,    0,   71,    2, 0x0a /* Public */,
+
+ // signals: parameters
+    QMetaType::Void, QMetaType::QString, QMetaType::Int,    3,    4,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::Int,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -177,14 +216,47 @@ void MyFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         auto *_t = static_cast<MyFrame *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->showOption(); break;
-        case 1: _t->hideOption(); break;
-        case 2: _t->changeIcon(); break;
-        case 3: _t->deleteFrame(); break;
+        case 0: _t->drawGraph((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->showGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: _t->hideGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: _t->deleteGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 4: _t->showOption(); break;
+        case 5: _t->hideOption(); break;
+        case 6: _t->changeIcon(); break;
+        case 7: _t->deleteFrame(); break;
         default: ;
         }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (MyFrame::*)(QString , int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MyFrame::drawGraph)) {
+                *result = 0;
+                return;
+            }
+        }
+        {
+            using _t = void (MyFrame::*)(int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MyFrame::showGraph)) {
+                *result = 1;
+                return;
+            }
+        }
+        {
+            using _t = void (MyFrame::*)(int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MyFrame::hideGraph)) {
+                *result = 2;
+                return;
+            }
+        }
+        {
+            using _t = void (MyFrame::*)(int );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MyFrame::deleteGraph)) {
+                *result = 3;
+                return;
+            }
+        }
     }
-    Q_UNUSED(_a);
 }
 
 QT_INIT_METAOBJECT const QMetaObject MyFrame::staticMetaObject = { {
@@ -216,15 +288,43 @@ int MyFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 8;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 8)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 4;
+        _id -= 8;
     }
     return _id;
+}
+
+// SIGNAL 0
+void MyFrame::drawGraph(QString _t1, int _t2)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void MyFrame::showGraph(int _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
+}
+
+// SIGNAL 2
+void MyFrame::hideGraph(int _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 2, _a);
+}
+
+// SIGNAL 3
+void MyFrame::deleteGraph(int _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 3, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

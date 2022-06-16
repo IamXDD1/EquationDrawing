@@ -1,7 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
 
-
 QString NumberProcess::addSpace(QString input)
 {
     int mark = -1;
@@ -108,6 +107,16 @@ void Widget::drawing(QString equation, int graph_idx)
     int num = temp.toInt();
     //QMessageBox::information(NULL,equation,equation);
 
+    /*
+     *QVector<double> x(20001), y(20001); // initialize with entries 0..100
+     *for (int i=0; i<20001; ++i)
+     *{
+     *   x[i] = i; // x goes from -1 to 1
+     *   //sometig convert x to i
+     *   y[i] = RUN(equation); // let's plot a quadratic function
+     *}
+     */
+
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
     {
@@ -117,7 +126,6 @@ void Widget::drawing(QString equation, int graph_idx)
     // create graph and assign data to it:
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
-
 }
 
 void Widget::showing(int graph_idx)
