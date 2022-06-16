@@ -52,13 +52,11 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = ../EquationDrawing/NumProcess.cpp \
-		../EquationDrawing/main.cpp \
+SOURCES       = ../EquationDrawing/main.cpp \
 		../EquationDrawing/qcustomplot.cpp \
 		../EquationDrawing/widget.cpp moc_qcustomplot.cpp \
 		moc_widget.cpp
-OBJECTS       = NumProcess.o \
-		main.o \
+OBJECTS       = main.o \
 		qcustomplot.o \
 		widget.o \
 		moc_qcustomplot.o \
@@ -272,10 +270,8 @@ DIST          = /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/spec_pre.pr
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/exceptions.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/yacc.prf \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/lex.prf \
-		../EquationDrawing/EquationDrawing.pro ../EquationDrawing/NumProcess.h \
-		../EquationDrawing/qcustomplot.h \
-		../EquationDrawing/widget.h ../EquationDrawing/NumProcess.cpp \
-		../EquationDrawing/main.cpp \
+		../EquationDrawing/EquationDrawing.pro ../EquationDrawing/qcustomplot.h \
+		../EquationDrawing/widget.h ../EquationDrawing/main.cpp \
 		../EquationDrawing/qcustomplot.cpp \
 		../EquationDrawing/widget.cpp
 QMAKE_TARGET  = EquationDrawing
@@ -759,8 +755,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../EquationDrawing/NumProcess.h ../EquationDrawing/qcustomplot.h ../EquationDrawing/widget.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../EquationDrawing/NumProcess.cpp ../EquationDrawing/main.cpp ../EquationDrawing/qcustomplot.cpp ../EquationDrawing/widget.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../EquationDrawing/qcustomplot.h ../EquationDrawing/widget.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../EquationDrawing/main.cpp ../EquationDrawing/qcustomplot.cpp ../EquationDrawing/widget.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../EquationDrawing/widget.ui $(DISTDIR)/
 
 
@@ -834,6 +830,16 @@ moc_widget.cpp: ../EquationDrawing/widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QtNumeric \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QColor \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QPen \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QPair \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		moc_predefs.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/bin/moc
 	/Users/yenyenyeh/Qt/5.15.2/clang_64/bin/moc $(DEFINES) --include /Users/yenyenyeh/Documents/GitHub/EquationDrawing/qtCreator/build-EquationDrawing-Desktop_Qt_5_15_2_clang_64bit-Debug/moc_predefs.h -I/Users/yenyenyeh/Qt/5.15.2/clang_64/mkspecs/macx-clang -I/Users/yenyenyeh/Documents/GitHub/EquationDrawing/qtCreator/EquationDrawing -I/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtPrintSupport.framework/Headers -I/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers -I/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers -I/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/13.0.0/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.1.sdk/usr/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -F/Users/yenyenyeh/Qt/5.15.2/clang_64/lib ../EquationDrawing/widget.h -o moc_widget.cpp
@@ -869,9 +875,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 
 ####### Compile
 
-NumProcess.o: ../EquationDrawing/NumProcess.cpp ../EquationDrawing/NumProcess.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o NumProcess.o ../EquationDrawing/NumProcess.cpp
-
 main.o: ../EquationDrawing/main.cpp ../EquationDrawing/widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/QWidget \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qwidget.h \
@@ -895,6 +898,16 @@ main.o: ../EquationDrawing/main.cpp ../EquationDrawing/widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QtNumeric \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QDebug \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QColor \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QPen \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QPair \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qstring.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/QApplication \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../EquationDrawing/main.cpp
@@ -932,9 +945,17 @@ widget.o: ../EquationDrawing/widget.cpp ../EquationDrawing/widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qopenglpaintdevice.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qnumeric.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QtNumeric \
-		ui_widget.h \
 		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QDebug \
-		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qdebug.h
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qdebug.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QColor \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qcolor.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/QPen \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtGui.framework/Headers/qpen.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QPair \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qpair.h \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/QString \
+		/Users/yenyenyeh/Qt/5.15.2/clang_64/lib/QtCore.framework/Headers/qstring.h \
+		ui_widget.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o widget.o ../EquationDrawing/widget.cpp
 
 moc_qcustomplot.o: moc_qcustomplot.cpp 
