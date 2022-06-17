@@ -1,6 +1,9 @@
 #include "widget.h"
 #include "ui_widget.h"
-
+#include <QDebug>
+using std::ostringstream;
+using std::stringstream;
+using std::istringstream;
 
 QString NumberProcess::addSpace(QString input)
 {
@@ -39,6 +42,299 @@ QString NumberProcess::addSpace(QString input)
 
     input.remove(0,1);
     return input;
+}
+
+double NumberProcess::RUN(QString equation)
+{
+    string str = equation.toStdString();
+    double ans(Input(str));
+    qDebug() << ans;
+    return ans;
+}
+
+double NumberProcess::Input(string inputStr)
+{
+    stringstream input;
+    std::size_t found = inputStr.find('=');
+    istringstream check_ilegal(inputStr);
+    string check;
+    while(check_ilegal >> check){
+        if(!isdigit(check[0]))
+        {
+            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"
+                   && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
+                throw "Error: undefined variable exists";
+        }
+    }
+
+    // want no "=" in the inputStr
+    if (found == std::string::npos) {
+        string returnSTR = inputStr;
+        returnSTR = judgeFormat(returnSTR);
+        return calculate(InfixtoPosfix(returnSTR));
+    }
+    else throw "Error: more then one \"=\" sign in the frame";
+}
+
+string NumberProcess::judgeFormat(string infix)
+{
+    stringstream in;
+    in << infix;
+    ostringstream toReturn;
+    int countLParentheses = 0;
+    int countRParentheses = 0;
+    string part;
+    bool divide = false;  // judging divide 0 or not
+    bool sign = true;     // judging two mathmatical symbols connect or not. ex: 2 * * 2 �� 2 + + 2 (x)
+    bool number = false;  // judging two numbers connect or not. ex: 2 2 + 3 1 2 (x) -> should be 22 + 312 (o)
+    bool minus = false;  // -> - <- (-5)
+    double var_temp;
+    for (; in >> part;) {
+        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-')) {
+            double sub = stod(part);
+            var_temp = sub;
+            if (divide && var_temp == 0) throw "Error: Can't divide zero.";
+            if (number) throw "Error: Two numbers connect.";
+            if (minus) {
+                if (part[0] == '-') part.erase(part.begin());
+                else part.insert(part.begin(), '-');
+                minus = false;
+            }
+            divide = false;
+            sign = false;
+            number = true;
+        }
+        else if (part[0] == '(' || part[0] == ')') {
+            if (part[0] == '(') countLParentheses++;
+            else countRParentheses++;
+        }
+        else if (part[0] == '!') {
+            if (sign) {
+                throw "Error: Two mathmatical symbols connect or begin with mathmatical symbol.";
+            }
+            divide = false;
+            sign = false;
+            number = false;
+        }
+        else if (part[0] == '-') {
+            if (minus) {
+                minus = false;
+                sign = true;
+                part = "";
+            }
+            else {
+                if (sign) {
+                    minus = true;
+                    sign = false;
+                    part = "";
+                }
+                if (number) {
+                    minus = false;
+                    sign = true;
+                }
+            }
+
+            divide = false;
+            number = false;
+        }
+        else if (part[0] == '+' || part[0] == '*' || part[0] == '/' || part[0] == '^') {
+
+            if (sign) {
+                throw "Error: Two mathmatical symbols connect or begin with mathmatical symbol.";
+            }
+            switch (part[0])
+            {
+            case '/':
+                divide = true; sign = true; number = false; break;
+            default:
+                divide = false; sign = true; number = false; break;
+            }
+        }
+        toReturn << part << " ";
+    }
+
+    if (countLParentheses != countRParentheses) throw "Incomplete parentheses.";
+    return toReturn.str();
+}
+
+double NumberProcess::calculate(string posfix)
+{
+    istringstream istr(posfix);
+    string str;
+    stack<double> temp;
+    for (; istr >> str;)
+    {
+        //cout << str << '\n';
+        if (isdigit(str[0]) || (isdigit(str[1]) && str[0] == '-')) {
+            double toPush = stod(str);
+            temp.push(toPush);
+        }
+        else {
+            switch (str[0])
+            {
+            case '+':
+                if (temp.size() >= 2) {
+                    double a(temp.top());
+                    temp.pop();
+                    double b(temp.top());
+                    temp.pop();
+
+                    temp.push(b + a);
+                }
+                else throw "Can't a + b, for stack has only one number!\n";
+                break;
+            case '-':
+                if (temp.size() >= 2) {
+                    double a(temp.top());
+                    temp.pop();
+                    double b(temp.top());
+                    temp.pop();
+
+                    temp.push(b - a);
+                }
+                else throw "Can't a - b, for stack has only one number!\n";
+                break;
+            case '*':
+                if (temp.size() >= 2) {
+                    double a(temp.top());
+                    temp.pop();
+                    double b(temp.top());
+                    temp.pop();
+
+                    temp.push(b * a);
+                }
+                else throw "Can't a * b, for stack has only one number!\n";
+                break;
+            case '/':
+                if (temp.size() >= 2) {
+                    double a(temp.top());
+                    temp.pop();
+                    double b(temp.top());
+                    temp.pop();
+
+                    temp.push(b / a);
+                }
+                else throw "Can't a / b, for stack has only one number!\n";
+                break;
+            case '^':
+                if (temp.size() >= 2) {
+                    double a(temp.top());
+                    temp.pop();
+                    double b(temp.top());
+                    temp.pop();
+
+                    temp.push(pow(b, a));
+                }
+                else throw "Can't a ^ b, for stack has only one number!\n";
+                break;
+            case '!':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+                    if (a < 0 || floor(a) != a)
+                        throw "Error: Wrong factorial type.";
+                    double cal = 1;
+                    for(int i = 1; i < a; i++)
+                    {
+                        cal *= i;
+                    }
+                    temp.push(cal);
+                }
+                else throw "Can't a !, for stack has no number!\n";
+                break;
+            case 's':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(sin(a));
+                }
+                else throw "Can't sin(a) , for stack has no number!\n";
+                break;
+            case 'c':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(cos(a));
+                }
+                else throw "Can't cos(a) !, for stack has no number!\n";
+                break;
+            case 't':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(tan(a));
+                }
+                else throw "Can't tan(a) !, for stack has no number!\n";
+                break;
+            }
+        }
+
+    }
+    return temp.top();
+}
+
+int NumberProcess::weight(char op)
+{
+    switch (op)
+    {
+    case '(': case 's': case 'c': case 't': return -1;
+    case '!':  return 3; //push into queue directly
+    case '^': return 2;
+    case '*': case '/': case '%': return 1;
+    case '+': case '-': return 0;
+    }
+    return -2;
+}
+
+string NumberProcess::InfixtoPosfix(string infix)
+{
+    istringstream in(infix);
+    ostringstream posfix;
+    stack<char> saveOperator;
+
+    string temp;
+    for (; in >> temp;) {
+        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-')) {
+            posfix << temp << " ";
+        }
+        else {  // sin ( 2 )
+            switch (temp[0])
+            {
+            case '(': saveOperator.push('('); break;
+            case 's': saveOperator.push('('); saveOperator.push('s'); in >> temp; break;
+            case 'c': saveOperator.push('('); saveOperator.push('c'); in >> temp; break;
+            case 't': saveOperator.push('('); saveOperator.push('t'); in >> temp; break;
+            case ')':
+                for (; saveOperator.top() != '(';) {
+                    if (!saveOperator.empty()) {
+                        posfix << saveOperator.top() << " ";
+                        saveOperator.pop();
+                    }
+                }
+                saveOperator.pop();
+                break;
+            case '+': case '-': case '*': case '/': case '^': case '!': case '%':
+                for (; !saveOperator.empty() && weight(temp[0]) <= weight(saveOperator.top());) {
+                    if (!saveOperator.empty()) {
+                        posfix << saveOperator.top() << " ";
+                        saveOperator.pop();
+                    }
+                }
+                saveOperator.push(temp[0]);
+                break;
+            }
+        }
+    }
+
+    for (; !saveOperator.empty();) {
+        posfix << saveOperator.top() << " ";
+        saveOperator.pop();
+    }
+    if (posfix.str().empty()) throw "Error: Empty calculation.";
+    return posfix.str();
 }
 
 //===============================================================================================================
@@ -109,6 +405,8 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
+    QString equation = "3 + 2 * cos ( s )";
+    RUN(equation);
     frame->emitDrawing();
 }
 
@@ -116,7 +414,6 @@ void Widget::drawing(QString equation, int graph_idx)
 {
     QString temp = "" + equation[equation.size()-1];
     int num = temp.toInt();
-    //QMessageBox::information(NULL,equation,equation);
 
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
@@ -127,7 +424,6 @@ void Widget::drawing(QString equation, int graph_idx)
     // create graph and assign data to it:
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
-
 }
 
 void Widget::showing(int graph_idx)
