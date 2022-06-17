@@ -13,6 +13,7 @@
 #include <QColor>
 #include <QPen>
 #include <QPair>
+#include <QChar>
 #include <string>
 #include <iostream>
 #include <sstream>
