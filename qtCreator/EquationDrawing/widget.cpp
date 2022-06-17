@@ -50,100 +50,20 @@ double NumberProcess::RUN(QString equation)
     str = equation.toStdString();
     // have been editted by Gabriel
     double ans(Input(str));
-    return Output(ans);
-}
-
-auto NumberProcess::is_Var_exist(string name)
-{
-    auto it = exist_var.find(name);
-    if (it == exist_var.end()) {
-        throw "Error: Variable doesn't exist.";
-    }
-    else {
-        return it;
-    }
-}
-
-string process_Power(string front, string back) {
-
-    istringstream fin(front), bin(back);
-    string tmp;
-    ostringstream ans;
-    //ans << "( ";
-    for (; fin >> tmp;) {
-        if (tmp == "Power") {
-            bool comma = false;
-            int power = 0;
-            ostringstream osfront, osback;
-            int Lcount = 0;
-            string temp;
-            fin >> temp;
-            do
-            {
-                if (temp == "Power") {
-                    power++;
-                }
-                if (temp[0] == ',' && power != 0) power--;
-                else if (temp[0] == ',' && comma == false) {
-                    comma = true;
-                    continue;
-                }
-
-                if (temp[0] == '(') Lcount++;
-                else if (temp[0] == ')') Lcount--;
-
-                if (comma) osback << temp << " ";
-                else osfront << temp << " ";
-
-            } while (Lcount != 0 && fin >> temp);
-            ans << process_Power(osfront.str(), osback.str()) << " ";
-        }
-        else ans << tmp << " ";
-    }
-    if (back != "") ans << ") ";
-
-    ostringstream ans2;
-    ans2 << "( ";
-    for (; bin >> tmp;) {
-        if (tmp == "Power") {
-            bool comma = false;
-            int power = 0;
-            ostringstream osfront, osback;
-            int Lcount = 0;
-            string temp;
-            bin >> temp;
-            do
-            {
-                if (temp == "Power") {
-                    power++;
-                }
-                if (temp[0] == ',' && power != 0) power--;
-                else if (temp[0] == ',' && comma == false) {
-                    comma = true;
-                    continue;
-                }
-
-                if (temp[0] == '(') Lcount++;
-                else if (temp[0] == ')') Lcount--;
-
-                if (comma) osback << temp << " ";
-                else osfront << temp << " ";
-
-            } while (Lcount != 0 && bin >> temp);
-            ans2 << process_Power(osfront.str(), osback.str()) << " ";
-        }
-        else ans2 << tmp << " ";
-    }
-
-    if (back == "") return ans.str();
-    return ans.str() + "^ " + ans2.str();
+    return ans;
 }
 
 double NumberProcess::Input(string inputStr)
 {
     stringstream input;
-    regex NewVar("[a-zA-Z]");
     std::size_t found = inputStr.find('=');
+    istringstream check_ilegal(inputStr);
+    string check;
+    while(check_ilegal >> check){
+        if(check.size() > 1)
+            if(!isdigit(check[0]))
+                 if(check != "sin" && check != "cos" && check != "tan") throw "Error: undefined variable exists";
+    }
 
     // want no "=" in the inputStr
     if (found == std::string::npos) {
@@ -235,30 +155,11 @@ string NumberProcess::judgeFormat(string infix)
                 divide = false; sign = true; number = false; break;
             }
         }
-        else { //if it's not digit or symbol, judging whether it is variable.
-            if (!isVariable(part)) throw "Error: Variable doesn't exist.";
-            else {
-                if (minus)  exist_var[part] *= -1;
-                divide = false;
-                sign = false;
-                number = true;
-                minus = false;
-            }
-        }
         toReturn << part << " ";
     }
 
     if (countLParentheses != countRParentheses) throw "Incomplete parentheses.";
     return toReturn.str();
-}
-
-bool NumberProcess::isVariable(string str) {
-    for (auto i : exist_var) {
-        if (i.first == str) {
-            return true;
-        }
-    }
-    return false;
 }
 
 double NumberProcess::calculate(string posfix)
@@ -269,7 +170,7 @@ double NumberProcess::calculate(string posfix)
     for (; istr >> str;)
     {
         //cout << str << '\n';
-        if (isdigit(str[0]) || (isdigit(str[1]) && str[0] == '-') || isVariable(str)) {
+        if (isdigit(str[0]) || (isdigit(str[1]) && str[0] == '-')) {
             double toPush = stod(str);
             temp.push(toPush);
         }
@@ -346,6 +247,33 @@ double NumberProcess::calculate(string posfix)
                 }
                 else throw "Can't a !, for stack has no number!\n";
                 break;
+            case 's':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(sin(a));
+                }
+                else throw "Can't sin(a) , for stack has no number!\n";
+                break;
+            case 'c':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(cos(a));
+                }
+                else throw "Can't cos(a) !, for stack has no number!\n";
+                break;
+            case 't':
+                if (temp.size() >= 1) {
+                    double a(temp.top());
+                    temp.pop();
+
+                    temp.push(tan(a));
+                }
+                else throw "Can't tan(a) !, for stack has no number!\n";
+                break;
             }
         }
 
@@ -357,7 +285,7 @@ int NumberProcess::weight(char op)
 {
     switch (op)
     {
-    case '(': return -1;
+    case '(': case 's': case 'c': case 't': return -1;
     case '!':  return 3; //push into queue directly
     case '^': return 2;
     case '*': case '/': case '%': return 1;
@@ -374,13 +302,16 @@ string NumberProcess::InfixtoPosfix(string infix)
 
     string temp;
     for (; in >> temp;) {
-        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || isVariable(temp)) {
+        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-')) {
             posfix << temp << " ";
         }
-        else {
+        else {  // sin ( 2 )
             switch (temp[0])
             {
             case '(': saveOperator.push('('); break;
+            case 's': saveOperator.push('('); saveOperator.push('s'); in >> temp; break;
+            case 'c': saveOperator.push('('); saveOperator.push('c'); in >> temp; break;
+            case 't': saveOperator.push('('); saveOperator.push('t'); in >> temp; break;
             case ')':
                 for (; saveOperator.top() != '(';) {
                     if (!saveOperator.empty()) {
@@ -409,35 +340,6 @@ string NumberProcess::InfixtoPosfix(string infix)
     }
     if (posfix.str().empty()) throw "Error: Empty calculation.";
     return posfix.str();
-}
-
-double NumberProcess::Output(double ans)
-{
-    stringstream ss;
-    ss << ans;
-    cout << ans << endl;
-    return stod(ss.str());
-}
-
-void NumberProcess::test()
-{
-    /*
-    Number A("-123.16543");
-    Number C("abc");
-    string temp;
-    getline(std::cin,temp);
-    judgeFormat(temp);
-    //std::cout << A.getNum() << ' ' << A.getDecimal() << ' ' << A.Integer << ' ' << A.negative << '\n';
-    */
-    while (true)
-    {
-        bool equal = false;
-        string str;
-        getline(cin, str);
-        // have been edited by Gabriel
-        double ans(Input(str));
-        if (!equal) Output(ans);
-    }
 }
 
 //===============================================================================================================
