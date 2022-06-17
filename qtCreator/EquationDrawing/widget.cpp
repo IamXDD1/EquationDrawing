@@ -48,7 +48,6 @@ double NumberProcess::RUN(QString equation)
 {
     string str = equation.toStdString();
     double ans(Input(str));
-    qDebug() << ans;
     return ans;
 }
 
@@ -395,8 +394,7 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
-    QString equation = "3 + 2 * cos ( s )";
-    RUN(equation);
+
     frame->emitDrawing();
 }
 
@@ -562,7 +560,16 @@ void MyFrame::judgeError()
     }
     //if equation has variable, replace it to variable's equation
     replaceVar();
-
+    try
+    {
+        // for testing
+        QString w = "cos ( s )";
+        RUN(w);
+    }
+    catch(string e)
+    {
+        qDebug() << QString::fromStdString(e);
+    }
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
     // if error
     //color_btn->setText("E");
