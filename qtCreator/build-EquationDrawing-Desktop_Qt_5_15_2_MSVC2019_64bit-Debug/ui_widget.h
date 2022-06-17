@@ -30,16 +30,16 @@ public:
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(965, 587);
+        Widget->resize(1102, 720);
         CreateFunction = new QPushButton(Widget);
         CreateFunction->setObjectName(QString::fromUtf8("CreateFunction"));
-        CreateFunction->setGeometry(QRect(500, 10, 460, 61));
+        CreateFunction->setGeometry(QRect(620, 20, 460, 61));
         tableWidget = new QTableWidget(Widget);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
-        tableWidget->setGeometry(QRect(500, 80, 460, 500));
+        tableWidget->setGeometry(QRect(620, 90, 460, 611));
         customPlot = new QCustomPlot(Widget);
         customPlot->setObjectName(QString::fromUtf8("customPlot"));
-        customPlot->setGeometry(QRect(10, 90, 481, 481));
+        customPlot->setGeometry(QRect(20, 60, 581, 581));
 
         retranslateUi(Widget);
 
