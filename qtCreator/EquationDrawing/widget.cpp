@@ -188,16 +188,26 @@ void MyFrame::initialize()
 
 void MyFrame::splitEqualSign(QString temp)
 {
+    bool findEqualSign = false;
     for(int i=0; i<temp.size(); i++){
         if(temp[i] == '='){
             var.name = temp.mid(0,i);
             var.equation = temp.mid(i+1,temp.size()-i-1);
+            findEqualSign = true;
             break;
         }
+    }
+    if(!findEqualSign){
+        color_btn->setText("E");
+        return;
+    }
+    else{
+        color_btn->setText(" ");
     }
     var.equation = addSpace(var.equation);
     judgeError();
 }
+
 bool MyFrame::isSaveWord(QString name)
 {
     if(name != "y" && name != "x" && name != "x^2+y^2") return false;
@@ -244,11 +254,17 @@ void MyFrame::replaceVar()
 void MyFrame::judgeError()
 {
     emitdeleting(); //enter new equation
+    //L&R of equal sign has no content
     if(this->var.equation == "" || this->var.name == "") {
         this->color_btn->setText("E");
         return;
     }
-
+    //variable name start without english
+    if(!(this->var.name[0].toLower() >= 'a' && this->var.name[0].toLower() <= 'z')){
+        color_btn->setText("E");
+        return;
+    }
+    //if equation has variable, replace it to variable's equation
     replaceVar();
 
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);

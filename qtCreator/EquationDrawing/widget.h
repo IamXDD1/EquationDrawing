@@ -13,6 +13,7 @@
 #include <QColor>
 #include <QPen>
 #include <QPair>
+#include <QChar>
 
 
 QT_BEGIN_NAMESPACE
