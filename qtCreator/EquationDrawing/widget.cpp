@@ -47,16 +47,9 @@ QString NumberProcess::addSpace(QString input)
 double NumberProcess::RUN(QString equation)
 {
     string str = equation.toStdString();
-    try
-    {
-        double ans(Input(str));
-        return ans;
-    }
-    catch(string e)
-    {
-        cout << e;
-    }
-
+    double ans(Input(str));
+    qDebug() << ans;
+    return ans;
 }
 
 double NumberProcess::Input(string inputStr)
@@ -66,9 +59,12 @@ double NumberProcess::Input(string inputStr)
     istringstream check_ilegal(inputStr);
     string check;
     while(check_ilegal >> check){
-        if(check.size() > 1)
-            if(!isdigit(check[0]))
-                 if(check != "sin" && check != "cos" && check != "tan") throw "Error: undefined variable exists";
+        if(!isdigit(check[0]))
+        {
+            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"
+                   && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
+                throw "Error: undefined variable exists";
+        }
     }
 
     // want no "=" in the inputStr
@@ -399,6 +395,8 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
+    QString equation = "3 + 2 * cos ( s )";
+    RUN(equation);
     frame->emitDrawing();
 }
 
