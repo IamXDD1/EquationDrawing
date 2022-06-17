@@ -14,7 +14,27 @@
 #include <QPen>
 #include <QPair>
 #include <QChar>
+#include <string>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <regex>
+#include <stack>
+#include <map>
+#include <algorithm>
+#include <cstdlib>
+#include <sstream>
+#include <QString>
 
+using std::cin;
+using std::cout;
+using std::getline;
+using std::endl;
+using std::map;
+using std::string;
+using std::vector;
+using std::regex;
+using std::stack;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -29,12 +49,31 @@ static QList<MyFrame*> FrameList; // save things in frame including variable
 class NumberProcess {
 public:
     QString addSpace(QString input);
+
+    static int weight(char op);
+public:
+    static std::map<std::string, double> exist_var;
+    std::string show_exist;
+    double RUN(QString equation);
+    static double Input(std::string inputStr);
+    static std::string judgeFormat(std::string infix); //判斷名字 若有變數則直接替換
+
+    static double calculate(std::string posfix);
+    static bool isVariable(std::string str);
+    static auto is_Var_exist(std::string name);
+
+    static bool judge_if_can_draw(QString equation);
+
+    static std::string InfixtoPosfix(std::string infix);
+    static double Output(double ans);
+    void test();
     //variable declare  ->  1.from top to down  2.Error: undeclare, redeclare
     //basic calculate  ->  Error: wrong format
     //sin() cos() tan() calculate  ->  Error: wrong format
 };
 
 struct Variable {
+    QString tmp;
     QString name;
     QString equation;
     QString temp;
@@ -67,9 +106,9 @@ private:
 };
 
 class MyFrame : public QFrame, public NumberProcess {
-    Q_OBJECT
+          Q_OBJECT
 public:
-    //explicit MyFrame(QObject *parent = 0);
+//explicit MyFrame(QObject *parent = 0);
 
     QPushButton* color_btn,* showGraph_btn,* deleteFrame_btn;
     QLineEdit* text;
