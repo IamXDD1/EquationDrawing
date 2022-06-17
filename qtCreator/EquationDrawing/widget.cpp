@@ -1,6 +1,6 @@
 #include "widget.h"
 #include "ui_widget.h"
-
+#include <QDebug>
 using std::ostringstream;
 using std::stringstream;
 using std::istringstream;
@@ -46,11 +46,17 @@ QString NumberProcess::addSpace(QString input)
 
 double NumberProcess::RUN(QString equation)
 {
-    string str;
-    str = equation.toStdString();
-    // have been editted by Gabriel
-    double ans(Input(str));
-    return ans;
+    string str = equation.toStdString();
+    try
+    {
+        double ans(Input(str));
+        return ans;
+    }
+    catch(string e)
+    {
+        cout << e;
+    }
+
 }
 
 double NumberProcess::Input(string inputStr)
@@ -67,15 +73,7 @@ double NumberProcess::Input(string inputStr)
 
     // want no "=" in the inputStr
     if (found == std::string::npos) {
-        input << inputStr;
-        string temp;
-        string returnSTR;
-        vector<string> allstr;
-
-        while (input >> temp) {
-            allstr.push_back(temp);
-        }
-
+        string returnSTR = inputStr;
         returnSTR = judgeFormat(returnSTR);
         return calculate(InfixtoPosfix(returnSTR));
     }
@@ -84,7 +82,8 @@ double NumberProcess::Input(string inputStr)
 
 string NumberProcess::judgeFormat(string infix)
 {
-    istringstream in(infix);
+    stringstream in;
+    in << infix;
     ostringstream toReturn;
     int countLParentheses = 0;
     int countRParentheses = 0;
@@ -405,29 +404,8 @@ void Widget::createFrame(){
 
 void Widget::drawing(QString equation, int graph_idx)
 {
-    // need to tell if it can be drawn? (if the variable doesn't include x or y)
-    // --> a new function
     QString temp = "" + equation[equation.size()-1];
     int num = temp.toInt();
-    // QMessageBox::information(NULL,equation,equation);
-    /*
-     * bool can_draw = judge_if_can_draw(equation);
-     * if(can_draw)
-     * {
-     *      QVector<double> x(20001), y(20001); // initialize with entries 0..100
-     *      for (int i=0; i<20001; ++i)
-     *      {
-     *          x[i] = i; // x goes from -1 to 1
-     *          //sometig convert x to i
-     *          y[i] = RUN(equation, can_draw); // let's plot a quadratic function
-     *      }
-     * }
-     * else
-     * {
-     *      RUN(equation, can_draw);
-     *      return;
-     * }
-     */
 
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
