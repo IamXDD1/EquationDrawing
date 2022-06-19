@@ -52,6 +52,30 @@ QString NumberProcess::RUN(QString equation)
 
 string NumberProcess::Input(string inputStr)
 {
+    qDebug()<<QString::fromStdString(inputStr);
+    int doubleM = 0;
+    for(int i = 0 ; i < inputStr.size() ; i++)
+    {
+        if(doubleM == 1) doubleM = 2;
+        else if(doubleM == 2)
+        {
+            if(inputStr[i] == '-' || inputStr[i] == '+' ||  inputStr[i] == '*' || inputStr[i] == '/' ||
+                    inputStr[i] == '%' || inputStr[i] == '^' || inputStr[i] == '!')
+            {
+                throw "Error: Two mathmatical symbols connect or begin with mathmatical symbol.";
+            }
+            else doubleM = 0;
+        }
+
+        if(inputStr[i] == '-') doubleM = 1;
+    }
+
+    for(int i = 0 ; i < inputStr.size() ; i++)
+    {
+        if(inputStr[i] == '-') inputStr.insert(i + 1, " 1 * ");
+    }
+
+    qDebug() << QString::fromStdString(inputStr);
     stringstream input;
     std::size_t found = inputStr.find('=');
     istringstream check_ilegal(inputStr);
@@ -81,6 +105,7 @@ string NumberProcess::Input(string inputStr)
 
 string NumberProcess::judgeFormat(string infix)
 {
+    qDebug() << QString::fromStdString(infix);
     stringstream in;
     in << infix;
     ostringstream toReturn;
@@ -92,7 +117,13 @@ string NumberProcess::judgeFormat(string infix)
     bool number = false;  // judging two numbers connect or not. ex: 2 2 + 3 1 2 (x) -> should be 22 + 312 (o)
     bool minus = false;  // -> - <- (-5)
     double var_temp;
+    bool need_a_par = false;
     for (; in >> part;) {
+        if(need_a_par)
+        {
+            if(part[0] != '(') throw "Error: not a reasonable equation.";
+            else need_a_par = false;
+        }
         if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x') {
             if(part[0]!='x' && part[0] != 'y')
             {
@@ -170,6 +201,10 @@ string NumberProcess::judgeFormat(string infix)
                 sign = false;
                 number = true;
                 minus = false;
+            }
+            else
+            {
+                need_a_par = true;
             }
         }
         toReturn << part << " ";
@@ -523,7 +558,7 @@ void MyFrame::initialize()
 
     text = new QLineEdit;
     text->setParent(this);
-    text->setText("y=-x");
+    text->setText("y=--1");
     text->setCursorPosition(0);
     text->resize(370,btn_size);
     text->move(30,1);
