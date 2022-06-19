@@ -63,7 +63,7 @@ string NumberProcess::Input(string inputStr)
             if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x" && check != "y"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
 
-                throw "Error: undefined variable exists";
+                throw check;//"Error: undefined variable exists";
         }
         if(check == "(") hollow = true;
         if(hollow && check == ")") throw "Error: nothing in the parentheses";
@@ -424,8 +424,10 @@ void Widget::createFrame(){
 
 void Widget::drawing(QString var_name, QString equation, int graph_idx)
 {
-#define RANGE 400001
+#define RANGE 20001
 #define PRECISION 35.0
+
+    //QMessageBox::information(NULL,equation,equation);
 
     if(var_name == "y"){
         std::vector<int> index;
@@ -439,13 +441,12 @@ void Widget::drawing(QString var_name, QString equation, int graph_idx)
         {
           double x_temp = i/PRECISION - (RANGE/PRECISION/2);
           QString toReplace = equation;
-          for(int j = 0 ; j < index.size(); j++)
+          for(int j = index.size()-1 ; j >= 0; j--)
           {
               toReplace.replace(index[j], 1, QString::number(x_temp));
           }
 
           x[i] = x_temp; // x goes from -1 to 1
-          //if(i == 1) QMessageBox::information(NULL,"test",toReplace);
           y[i] = calculate(toReplace); // let's plot a quadratic function
         }
 
@@ -631,16 +632,14 @@ void MyFrame::judgeError()
     replaceVar();
 
     try{
-        var.equation = RUN(var.equation);
+        var.postfix = RUN(var.temp);
     }
     catch(const char* error){
-         QMessageBox::information(NULL,error,error);
          color_btn->setText("E");
          return;
     }
     catch(std::string error){
         QString temp = QString::fromStdString(error);
-        QMessageBox::information(NULL,temp,temp);
         color_btn->setText("E");
         return;
     }
