@@ -558,7 +558,7 @@ void MyFrame::initialize()
 
     text = new QLineEdit;
     text->setParent(this);
-    text->setText("y=--1");
+    text->setText("y=1");
     text->setCursorPosition(0);
     text->resize(370,btn_size);
     text->move(30,1);
