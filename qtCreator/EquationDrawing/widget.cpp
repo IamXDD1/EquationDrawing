@@ -44,33 +44,37 @@ QString NumberProcess::addSpace(QString input)
     return input;
 }
 
-double NumberProcess::RUN(QString equation)
+QString NumberProcess::RUN(QString equation)
 {
     string str = equation.toStdString();
-    double ans(Input(str));
-    return ans;
+    return QString::fromStdString(Input(str));
 }
 
-double NumberProcess::Input(string inputStr)
+string NumberProcess::Input(string inputStr)
 {
     stringstream input;
     std::size_t found = inputStr.find('=');
     istringstream check_ilegal(inputStr);
     string check;
+    bool hollow = false;
     while(check_ilegal >> check){
         if(!isdigit(check[0]))
         {
-            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"
+            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
                 throw "Error: undefined variable exists";
         }
+        if(check == "(") hollow = true;
+        if(hollow && check == ")") throw "Error: nothing in the parentheses";
+        if(hollow && check != ")" && check != "(") hollow = false;
+
     }
 
     // want no "=" in the inputStr
     if (found == std::string::npos) {
         string returnSTR = inputStr;
         returnSTR = judgeFormat(returnSTR);
-        return calculate(InfixtoPosfix(returnSTR));
+        return InfixtoPosfix(returnSTR);
     }
     else throw "Error: more then one \"=\" sign in the frame";
 }
@@ -147,6 +151,22 @@ string NumberProcess::judgeFormat(string infix)
                 divide = true; sign = true; number = false; break;
             default:
                 divide = false; sign = true; number = false; break;
+            }
+        }
+        else { //if it's not digit or symbol, judging whether it is variable.
+            if (part != "sin" && part != "cos" && part != "tan")
+            {
+                if (minus) {
+                    string temp = toReturn.str();
+                    temp.erase(temp.end() - 1);
+                    toReturn.clear();
+                    toReturn.str(temp);
+                    part.insert(part.begin(), '-');
+                }
+                divide = false;
+                sign = false;
+                number = true;
+                minus = false;
             }
         }
         toReturn << part << " ";
@@ -562,11 +582,9 @@ void MyFrame::judgeError()
     replaceVar();
     try
     {
-        // for testing
-        QString w = "cos ( s )";
-        RUN(w);
+        RUN(this->var.temp);
     }
-    catch(string e)
+    catch(const char* e)
     {
         qDebug() << QString::fromStdString(e);
     }
