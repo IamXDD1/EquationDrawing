@@ -53,11 +53,11 @@ public:
     static int weight(char op);
 public:
     std::string show_exist;
-    double RUN(QString equation);
-    static double Input(std::string inputStr);
+    QString RUN(QString equation);
+    static string Input(std::string inputStr);
     static std::string judgeFormat(std::string infix); //判斷名字 若有變數則直接替換
 
-    static double calculate(std::string posfix);
+    static double calculate(QString posfix);
 
     static bool judge_if_can_draw(QString equation);
 
@@ -72,6 +72,7 @@ struct Variable {
     QString name;
     QString equation;
     QString temp;
+    QString postfix;
     Variable(QString left, QString right):name(left), equation(right), temp(""){};
     Variable():name(""),equation(""),temp(""){};
 }; // need to declare in MyFrame ??
