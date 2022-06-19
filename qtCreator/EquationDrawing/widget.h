@@ -133,7 +133,7 @@ public:
     void judgeError();
     bool isSaveWord(QString name);
     void replaceVar();
-    inline void emitDrawing(){ emit drawGraph(this->var.name, this->var.equation, this->graph_index); }
+    inline void emitDrawing(){ emit drawGraph(this->var.name, this->var.postfix, this->graph_index); }
     inline void emitShowing(){ color_btn->setText(" "); emit showGraph(this->graph_index); }
     inline void emitHiding(){ color_btn->setText("X"); emit hideGraph(this->graph_index); }  //may recover "E"
     inline void emitdeleting(){ emit deleteGraph(this->graph_index); }
