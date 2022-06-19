@@ -62,7 +62,8 @@ string NumberProcess::Input(string inputStr)
         {
             if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
-                throw "Error: undefined variable exists";
+                throw check;
+                //throw "Error: undefined variable exists";
         }
         if(check == "(") hollow = true;
         if(hollow && check == ")") throw "Error: nothing in the parentheses";
@@ -423,7 +424,6 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
-
     frame->emitDrawing();
 }
 
@@ -441,12 +441,10 @@ void Widget::drawing(QString equation, int graph_idx)
         if(equation[i] == 'x') index.push_back(i);
     }
 
-    qDebug() << index.size();
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
     {
       QString toReplace = equation;
-       qDebug() << toReplace;
       for(int j = 0 ; j < index.size(); j++)
       {
           toReplace.replace(index[j], 1, QString::number(i));
@@ -458,6 +456,7 @@ void Widget::drawing(QString equation, int graph_idx)
     }
 
     // create graph and assign data to it:
+    ui->customPlot->
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
 }
@@ -608,15 +607,23 @@ void MyFrame::judgeError()
     }
     //if equation has variable, replace it to variable's equation
     replaceVar();
-    try
-    {
-        RUN(this->var.temp);
-    }
-    catch(const char* e)
-    {
-        qDebug() << QString::fromStdString(e);
-    }
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
+/*
+    try{
+        RUN(var.equation);
+    }
+    catch(const char* error){
+         QMessageBox::information(NULL,error,error);
+    }
+    catch(std::string error){
+        QString temp = QString::fromStdString(error);
+        QMessageBox::information(NULL,temp,temp);
+    }
+    catch(...){
+        color_btn->setText("E");
+    }
+*/
+
     // if error
     //color_btn->setText("E");
 
