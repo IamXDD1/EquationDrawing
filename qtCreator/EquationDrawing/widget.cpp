@@ -44,34 +44,36 @@ QString NumberProcess::addSpace(QString input)
     return input;
 }
 
-double NumberProcess::RUN(QString equation)
+QString NumberProcess::RUN(QString equation)
 {
     string str = equation.toStdString();
-    double ans(Input(str));
-    qDebug() << ans;
-    return ans;
+    return QString::fromStdString(Input(str));
 }
 
-double NumberProcess::Input(string inputStr)
+string NumberProcess::Input(string inputStr)
 {
     stringstream input;
     std::size_t found = inputStr.find('=');
     istringstream check_ilegal(inputStr);
     string check;
+    bool hollow = false;
     while(check_ilegal >> check){
         if(!isdigit(check[0]))
         {
-            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"
+            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
                 throw "Error: undefined variable exists";
         }
+        if(check == "(") hollow = true;
+        if(hollow && check == ")") throw "Error: nothing in the parentheses";
+        if(hollow && check != ")" && check != "(") hollow = false;
     }
 
     // want no "=" in the inputStr
     if (found == std::string::npos) {
         string returnSTR = inputStr;
         returnSTR = judgeFormat(returnSTR);
-        return calculate(InfixtoPosfix(returnSTR));
+        return InfixtoPosfix(returnSTR);
     }
     else throw "Error: more then one \"=\" sign in the frame";
 }
@@ -150,6 +152,22 @@ string NumberProcess::judgeFormat(string infix)
                 divide = false; sign = true; number = false; break;
             }
         }
+        else { //if it's not digit or symbol, judging whether it is variable.
+            if (part != "sin" && part != "cos" && part != "tan")
+            {
+                if (minus) {
+                    string temp = toReturn.str();
+                    temp.erase(temp.end() - 1);
+                    toReturn.clear();
+                    toReturn.str(temp);
+                    part.insert(part.begin(), '-');
+                }
+                divide = false;
+                sign = false;
+                number = true;
+                minus = false;
+            }
+        }
         toReturn << part << " ";
     }
 
@@ -157,9 +175,9 @@ string NumberProcess::judgeFormat(string infix)
     return toReturn.str();
 }
 
-double NumberProcess::calculate(string posfix)
+double NumberProcess::calculate(QString posfix)
 {
-    istringstream istr(posfix);
+    istringstream istr(posfix.toStdString());
     string str;
     stack<double> temp;
     for (; istr >> str;)
@@ -389,7 +407,7 @@ void Widget::createFrame(){
     MyFrame* frame = new MyFrame(this);
     frame->setParent(this);
     frame->resize(460,30);
-    frame->move(500,80+row_count*30);
+    frame->move(620,90+row_count*30);
     frame->show();
     ui->customPlot->graph(frame->graph_index)->setPen(QPen(QColor(frame->r,frame->g,frame->b)));
 
@@ -405,22 +423,40 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
-    QString equation = "3 + 2 * cos ( s )";
-    RUN(equation);
+
     frame->emitDrawing();
 }
 
 void Widget::drawing(QString equation, int graph_idx)
 {
-    QString temp = "" + equation[equation.size()-1];
-    int num = temp.toInt();
+    // ?
+    //QString temp = "" + equation[equation.size()-1];
+    //int num = temp.toInt();
 
+    qDebug() << equation;
+    //搜尋index
+    std::vector<int> index;
+    for(int i = 0 ; i < equation.size() ; i++)
+    {
+        if(equation[i] == 'x') index.push_back(i);
+    }
+
+    qDebug() << index.size();
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
     {
+      QString toReplace = equation;
+       qDebug() << toReplace;
+      for(int j = 0 ; j < index.size(); j++)
+      {
+          toReplace.replace(index[j], 1, QString::number(i));
+      }
+      qDebug() << toReplace;
       x[i] = i; // x goes from -1 to 1
-      y[i] = num; // let's plot a quadratic function
+
+      y[i] = calculate(toReplace); // let's plot a quadratic function
     }
+
     // create graph and assign data to it:
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
@@ -572,7 +608,14 @@ void MyFrame::judgeError()
     }
     //if equation has variable, replace it to variable's equation
     replaceVar();
-
+    try
+    {
+        RUN(this->var.temp);
+    }
+    catch(const char* e)
+    {
+        qDebug() << QString::fromStdString(e);
+    }
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
     // if error
     //color_btn->setText("E");
