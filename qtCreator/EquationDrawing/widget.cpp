@@ -67,7 +67,6 @@ string NumberProcess::Input(string inputStr)
         if(check == "(") hollow = true;
         if(hollow && check == ")") throw "Error: nothing in the parentheses";
         if(hollow && check != ")" && check != "(") hollow = false;
-
     }
 
     // want no "=" in the inputStr
@@ -176,9 +175,9 @@ string NumberProcess::judgeFormat(string infix)
     return toReturn.str();
 }
 
-double NumberProcess::calculate(string posfix)
+double NumberProcess::calculate(QString posfix)
 {
-    istringstream istr(posfix);
+    istringstream istr(posfix.toStdString());
     string str;
     stack<double> temp;
     for (; istr >> str;)
@@ -408,7 +407,7 @@ void Widget::createFrame(){
     MyFrame* frame = new MyFrame(this);
     frame->setParent(this);
     frame->resize(460,30);
-    frame->move(500,80+row_count*30);
+    frame->move(620,90+row_count*30);
     frame->show();
     ui->customPlot->graph(frame->graph_index)->setPen(QPen(QColor(frame->r,frame->g,frame->b)));
 
@@ -430,15 +429,34 @@ void Widget::createFrame(){
 
 void Widget::drawing(QString equation, int graph_idx)
 {
-    QString temp = "" + equation[equation.size()-1];
-    int num = temp.toInt();
+    // ?
+    //QString temp = "" + equation[equation.size()-1];
+    //int num = temp.toInt();
 
+    qDebug() << equation;
+    //搜尋index
+    std::vector<int> index;
+    for(int i = 0 ; i < equation.size() ; i++)
+    {
+        if(equation[i] == 'x') index.push_back(i);
+    }
+
+    qDebug() << index.size();
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
     {
+      QString toReplace = equation;
+       qDebug() << toReplace;
+      for(int j = 0 ; j < index.size(); j++)
+      {
+          toReplace.replace(index[j], 1, QString::number(i));
+      }
+      qDebug() << toReplace;
       x[i] = i; // x goes from -1 to 1
-      y[i] = num; // let's plot a quadratic function
+
+      y[i] = calculate(toReplace); // let's plot a quadratic function
     }
+
     // create graph and assign data to it:
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
