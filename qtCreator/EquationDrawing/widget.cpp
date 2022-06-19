@@ -597,7 +597,7 @@ void MyFrame::judgeError()
     replaceVar();
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
     try{
-        RUN(var.equation);
+        var.equation = RUN(var.equation);
     }
     catch(const char* error){
          QMessageBox::information(NULL,error,error);
