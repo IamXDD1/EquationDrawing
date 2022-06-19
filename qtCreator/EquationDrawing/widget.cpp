@@ -61,9 +61,10 @@ double NumberProcess::Input(string inputStr)
     while(check_ilegal >> check){
         if(!isdigit(check[0]))
         {
-            if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"
+            if(check != "sin" && check != "cos" && check != "tan" && check != "x" && check != "(" && check != ")"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
-                throw "Error: undefined variable exists";
+                throw check;
+                //throw "Error: undefined variable exists";
         }
     }
 
@@ -395,8 +396,6 @@ void Widget::createFrame(){
     connect(frame, SIGNAL(hideGraph(int)), this, SLOT(hiding(int)));
     connect(frame, SIGNAL(deleteGraph(int)), this, SLOT(deleting(int)));
 
-    QString equation = "3 + 2 * cos ( s )";
-    RUN(equation);
     frame->emitDrawing();
 }
 
@@ -405,13 +404,14 @@ void Widget::drawing(QString equation, int graph_idx)
     QString temp = "" + equation[equation.size()-1];
     int num = temp.toInt();
 
-    QVector<double> x(20001), y(20001); // initialize with entries 0..100
-    for (int i=0; i<20001; ++i)
+    QVector<double> x(61), y(61); // initialize with entries 0..100
+    for (int i=0; i<61; ++i)
     {
-      x[i] = i; // x goes from -1 to 1
-      y[i] = num; // let's plot a quadratic function
+      x[i] = i/20.0-1.5; // x goes from -1 to 1
+      y[i] = tan(x[i]); // let's plot a quadratic function
     }
     // create graph and assign data to it:
+    ui->customPlot->
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
 }
@@ -562,8 +562,23 @@ void MyFrame::judgeError()
     }
     //if equation has variable, replace it to variable's equation
     replaceVar();
-
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
+/*
+    try{
+        RUN(var.equation);
+    }
+    catch(const char* error){
+         QMessageBox::information(NULL,error,error);
+    }
+    catch(std::string error){
+        QString temp = QString::fromStdString(error);
+        QMessageBox::information(NULL,temp,temp);
+    }
+    catch(...){
+        color_btn->setText("E");
+    }
+*/
+
     // if error
     //color_btn->setText("E");
 
