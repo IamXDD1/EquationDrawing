@@ -92,10 +92,13 @@ string NumberProcess::judgeFormat(string infix)
     bool minus = false;  // -> - <- (-5)
     double var_temp;
     for (; in >> part;) {
-        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-')) {
-            double sub = stod(part);
-            var_temp = sub;
-            if (divide && var_temp == 0) throw "Error: Can't divide zero.";
+        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x') {
+            if(part[0]!='x')
+            {
+                double sub = stod(part);
+                var_temp = sub;
+                if (divide && var_temp == 0) throw "Error: Can't divide zero.";
+            }
             if (number) throw "Error: Two numbers connect.";
             if (minus) {
                 if (part[0] == '-') part.erase(part.begin());
@@ -153,7 +156,7 @@ string NumberProcess::judgeFormat(string infix)
             }
         }
         else { //if it's not digit or symbol, judging whether it is variable.
-            if (part != "sin" && part != "cos" && part != "tan")
+            if (part != "sin" && part != "cos" && part != "tan" )
             {
                 if (minus) {
                     string temp = toReturn.str();
@@ -315,7 +318,7 @@ string NumberProcess::InfixtoPosfix(string infix)
 
     string temp;
     for (; in >> temp;) {
-        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-')) {
+        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || temp[0] == 'x') {
             posfix << temp << " ";
         }
         else {  // sin ( 2 )
@@ -352,7 +355,8 @@ string NumberProcess::InfixtoPosfix(string infix)
         saveOperator.pop();
     }
     if (posfix.str().empty()) throw "Error: Empty calculation.";
-    return posfix.str();
+    string chop = posfix.str().erase(posfix.str().size() - 1 );
+    return chop;
 }
 
 //===============================================================================================================
@@ -433,27 +437,23 @@ void Widget::drawing(QString equation, int graph_idx)
     //QString temp = "" + equation[equation.size()-1];
     //int num = temp.toInt();
 
-    qDebug() << equation;
     //搜尋index
+
     std::vector<int> index;
     for(int i = 0 ; i < equation.size() ; i++)
     {
         if(equation[i] == 'x') index.push_back(i);
     }
 
-    qDebug() << index.size();
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
     {
       QString toReplace = equation;
-       qDebug() << toReplace;
       for(int j = 0 ; j < index.size(); j++)
       {
           toReplace.replace(index[j], 1, QString::number(i));
       }
-      qDebug() << toReplace;
       x[i] = i; // x goes from -1 to 1
-
       y[i] = calculate(toReplace); // let's plot a quadratic function
     }
 
@@ -501,7 +501,7 @@ void MyFrame::initialize()
 
     text = new QLineEdit;
     text->setParent(this);
-    text->setText("y=1");
+    text->setText("y=5*x+2");
     text->setCursorPosition(0);
     text->resize(370,btn_size);
     text->move(30,1);
@@ -610,7 +610,7 @@ void MyFrame::judgeError()
     replaceVar();
     try
     {
-        RUN(this->var.temp);
+       this->var.equation = RUN(this->var.equation);
     }
     catch(const char* e)
     {
