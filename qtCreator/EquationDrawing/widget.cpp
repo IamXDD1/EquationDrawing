@@ -62,8 +62,7 @@ string NumberProcess::Input(string inputStr)
         {
             if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
-                throw check;
-                //throw "Error: undefined variable exists";
+                throw "Error: undefined variable exists";
         }
         if(check == "(") hollow = true;
         if(hollow && check == ")") throw "Error: nothing in the parentheses";
@@ -181,6 +180,7 @@ string NumberProcess::judgeFormat(string infix)
 
 double NumberProcess::calculate(QString posfix)
 {
+    qDebug() << posfix;
     istringstream istr(posfix.toStdString());
     string str;
     stack<double> temp;
@@ -385,17 +385,7 @@ void Widget::on_CreateFunction_clicked()
     graph_count++;
 }
 
-void Widget::makeplot(){
-    // generate some data:
-    QVector<double> x(101), y(101); // initialize with entries 0..100
-    for (int i=0; i<101; ++i)
-    {
-      x[i] = i/50.0 - 1; // x goes from -1 to 1
-      y[i] = x[i]*x[i]; // let's plot a quadratic function
-    }
-    // create graph and assign data to it:
-    ui->customPlot->addGraph();
-    ui->customPlot->graph(0)->setData(x, y);
+void Widget::makeplot(){\
     // give the axes some labels:
     ui->customPlot->xAxis->setLabel("x");
     ui->customPlot->yAxis->setLabel("y");
@@ -433,17 +423,16 @@ void Widget::createFrame(){
 
 void Widget::drawing(QString equation, int graph_idx)
 {
-    // ?
     //QString temp = "" + equation[equation.size()-1];
     //int num = temp.toInt();
-
-    //搜尋index
 
     std::vector<int> index;
     for(int i = 0 ; i < equation.size() ; i++)
     {
         if(equation[i] == 'x') index.push_back(i);
     }
+
+    QMessageBox::information(NULL,equation,equation);
 
     QVector<double> x(20001), y(20001); // initialize with entries 0..100
     for (int i=0; i<20001; ++i)
@@ -458,7 +447,6 @@ void Widget::drawing(QString equation, int graph_idx)
     }
 
     // create graph and assign data to it:
-    ui->customPlot->
     ui->customPlot->graph(graph_idx)->setData(x, y);
     ui->customPlot->replot();
 }
@@ -621,28 +609,27 @@ void MyFrame::judgeError()
   // to hee
   
     QMessageBox::information(NULL,"ori:"+var.equation,"re:"+var.temp);
-/*
     try{
-        RUN(var.equation);
+        var.equation = RUN(var.equation);
     }
     catch(const char* error){
          QMessageBox::information(NULL,error,error);
+         color_btn->setText("E");
+         return;
     }
     catch(std::string error){
         QString temp = QString::fromStdString(error);
         QMessageBox::information(NULL,temp,temp);
+        color_btn->setText("E");
+        return;
     }
     catch(...){
         color_btn->setText("E");
+        return;
     }
-*/
 
-    // if error
-    //color_btn->setText("E");
-
-    // else
-    //color_btn->setText(" ");
-    //emitDrawing();
+    color_btn->setText(" ");
+    emitDrawing();
 }
 
 void MyFrame::deleteFrame(){
