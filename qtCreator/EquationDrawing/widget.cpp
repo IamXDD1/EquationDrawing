@@ -14,7 +14,7 @@ QString NumberProcess::addSpace(QString input)
 
     for (int i = 0; i < input.size(); i++)
     {
-        if (input[i] <= '9' && input[i] >= '0')
+        if ((input[i] <= '9' && input[i] >= '0') || input[i] == '.')
         {
             if (mark != 1)
             {
@@ -62,6 +62,7 @@ string NumberProcess::Input(string inputStr)
         {
             if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x" && check != "y"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
+
                 throw "Error: undefined variable exists";
         }
         if(check == "(") hollow = true;
@@ -92,7 +93,7 @@ string NumberProcess::judgeFormat(string infix)
     bool minus = false;  // -> - <- (-5)
     double var_temp;
     for (; in >> part;) {
-        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x' || part[0] == 'y') {
+        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x') {
             if(part[0]!='x' && part[0] != 'y')
             {
                 double sub = stod(part);
@@ -319,7 +320,7 @@ string NumberProcess::InfixtoPosfix(string infix)
 
     string temp;
     for (; in >> temp;) {
-        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || temp[0] == 'x' || temp[0] == 'y') {
+        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || temp[0] == 'x' || (temp[1] == 'x' && temp[0] == '-') || temp[0] == 'y') {
             posfix << temp << " ";
         }
         else {  // sin ( 2 )
@@ -442,6 +443,7 @@ void Widget::drawing(QString var_name, QString equation, int graph_idx)
           {
               toReplace.replace(index[j], 1, QString::number(x_temp));
           }
+
           x[i] = x_temp; // x goes from -1 to 1
           //if(i == 1) QMessageBox::information(NULL,"test",toReplace);
           y[i] = calculate(toReplace); // let's plot a quadratic function
@@ -520,7 +522,7 @@ void MyFrame::initialize()
 
     text = new QLineEdit;
     text->setParent(this);
-    text->setText("y=1");
+    text->setText("y=-x");
     text->setCursorPosition(0);
     text->resize(370,btn_size);
     text->move(30,1);
