@@ -14,6 +14,8 @@
 #include <QPen>
 #include <QPair>
 #include <QChar>
+#include <QString>
+
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -24,7 +26,7 @@
 #include <algorithm>
 #include <cstdlib>
 #include <sstream>
-#include <QString>
+#include <cmath>
 
 using std::cin;
 using std::cout;
@@ -35,6 +37,7 @@ using std::string;
 using std::vector;
 using std::regex;
 using std::stack;
+using std::pow;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -90,7 +93,7 @@ public:
 
 public slots:
     void makeplot();
-    void drawing(QString equation, int graph_idx);
+    void drawing(QString var_name, QString equation, int graph_idx);
     void showing(int graph_idx);
     void hiding(int graph_idx);
     void deleting(int graph_idx);
@@ -130,7 +133,7 @@ public:
     void judgeError();
     bool isSaveWord(QString name);
     void replaceVar();
-    inline void emitDrawing(){ emit drawGraph(this->var.equation, this->graph_index); }
+    inline void emitDrawing(){ emit drawGraph(this->var.name, this->var.equation, this->graph_index); }
     inline void emitShowing(){ color_btn->setText(" "); emit showGraph(this->graph_index); }
     inline void emitHiding(){ color_btn->setText("X"); emit hideGraph(this->graph_index); }  //may recover "E"
     inline void emitdeleting(){ emit deleteGraph(this->graph_index); }
@@ -142,7 +145,7 @@ public slots:
     void deleteFrame();
 
 signals:
-    void drawGraph(QString str_equation, int idx);
+    void drawGraph(QString var_name, QString str_equation, int idx);
     void showGraph(int idx);
     void hideGraph(int idx);
     void deleteGraph(int idx);
