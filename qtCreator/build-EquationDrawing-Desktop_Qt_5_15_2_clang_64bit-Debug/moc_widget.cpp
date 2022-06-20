@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Widget_t {
-    QByteArrayData data[10];
-    char stringdata0[94];
+    QByteArrayData data[11];
+    char stringdata0[103];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,17 +36,18 @@ QT_MOC_LITERAL(0, 0, 6), // "Widget"
 QT_MOC_LITERAL(1, 7, 8), // "makeplot"
 QT_MOC_LITERAL(2, 16, 0), // ""
 QT_MOC_LITERAL(3, 17, 7), // "drawing"
-QT_MOC_LITERAL(4, 25, 8), // "equation"
-QT_MOC_LITERAL(5, 34, 9), // "graph_idx"
-QT_MOC_LITERAL(6, 44, 7), // "showing"
-QT_MOC_LITERAL(7, 52, 6), // "hiding"
-QT_MOC_LITERAL(8, 59, 8), // "deleting"
-QT_MOC_LITERAL(9, 68, 25) // "on_CreateFunction_clicked"
+QT_MOC_LITERAL(4, 25, 8), // "var_name"
+QT_MOC_LITERAL(5, 34, 8), // "equation"
+QT_MOC_LITERAL(6, 43, 9), // "graph_idx"
+QT_MOC_LITERAL(7, 53, 7), // "showing"
+QT_MOC_LITERAL(8, 61, 6), // "hiding"
+QT_MOC_LITERAL(9, 68, 8), // "deleting"
+QT_MOC_LITERAL(10, 77, 25) // "on_CreateFunction_clicked"
 
     },
-    "Widget\0makeplot\0\0drawing\0equation\0"
-    "graph_idx\0showing\0hiding\0deleting\0"
-    "on_CreateFunction_clicked"
+    "Widget\0makeplot\0\0drawing\0var_name\0"
+    "equation\0graph_idx\0showing\0hiding\0"
+    "deleting\0on_CreateFunction_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,18 +66,18 @@ static const uint qt_meta_data_Widget[] = {
 
  // slots: name, argc, parameters, tag, flags
        1,    0,   44,    2, 0x0a /* Public */,
-       3,    2,   45,    2, 0x0a /* Public */,
-       6,    1,   50,    2, 0x0a /* Public */,
-       7,    1,   53,    2, 0x0a /* Public */,
-       8,    1,   56,    2, 0x0a /* Public */,
-       9,    0,   59,    2, 0x08 /* Private */,
+       3,    3,   45,    2, 0x0a /* Public */,
+       7,    1,   52,    2, 0x0a /* Public */,
+       8,    1,   55,    2, 0x0a /* Public */,
+       9,    1,   58,    2, 0x0a /* Public */,
+      10,    0,   61,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::Int,    4,    5,
-    QMetaType::Void, QMetaType::Int,    5,
-    QMetaType::Void, QMetaType::Int,    5,
-    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,    4,    5,    6,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void, QMetaType::Int,    6,
+    QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void,
 
        0        // eod
@@ -89,7 +90,7 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->makeplot(); break;
-        case 1: _t->drawing((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 1: _t->drawing((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         case 2: _t->showing((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->hiding((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->deleting((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -141,8 +142,8 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 struct qt_meta_stringdata_MyFrame_t {
-    QByteArrayData data[12];
-    char stringdata0[113];
+    QByteArrayData data[13];
+    char stringdata0[122];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -154,19 +155,20 @@ static const qt_meta_stringdata_MyFrame_t qt_meta_stringdata_MyFrame = {
 QT_MOC_LITERAL(0, 0, 7), // "MyFrame"
 QT_MOC_LITERAL(1, 8, 9), // "drawGraph"
 QT_MOC_LITERAL(2, 18, 0), // ""
-QT_MOC_LITERAL(3, 19, 12), // "str_equation"
-QT_MOC_LITERAL(4, 32, 3), // "idx"
-QT_MOC_LITERAL(5, 36, 9), // "showGraph"
-QT_MOC_LITERAL(6, 46, 9), // "hideGraph"
-QT_MOC_LITERAL(7, 56, 11), // "deleteGraph"
-QT_MOC_LITERAL(8, 68, 10), // "showOption"
-QT_MOC_LITERAL(9, 79, 10), // "hideOption"
-QT_MOC_LITERAL(10, 90, 10), // "changeIcon"
-QT_MOC_LITERAL(11, 101, 11) // "deleteFrame"
+QT_MOC_LITERAL(3, 19, 8), // "var_name"
+QT_MOC_LITERAL(4, 28, 12), // "str_equation"
+QT_MOC_LITERAL(5, 41, 3), // "idx"
+QT_MOC_LITERAL(6, 45, 9), // "showGraph"
+QT_MOC_LITERAL(7, 55, 9), // "hideGraph"
+QT_MOC_LITERAL(8, 65, 11), // "deleteGraph"
+QT_MOC_LITERAL(9, 77, 10), // "showOption"
+QT_MOC_LITERAL(10, 88, 10), // "hideOption"
+QT_MOC_LITERAL(11, 99, 10), // "changeIcon"
+QT_MOC_LITERAL(12, 110, 11) // "deleteFrame"
 
     },
-    "MyFrame\0drawGraph\0\0str_equation\0idx\0"
-    "showGraph\0hideGraph\0deleteGraph\0"
+    "MyFrame\0drawGraph\0\0var_name\0str_equation\0"
+    "idx\0showGraph\0hideGraph\0deleteGraph\0"
     "showOption\0hideOption\0changeIcon\0"
     "deleteFrame"
 };
@@ -186,22 +188,22 @@ static const uint qt_meta_data_MyFrame[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   54,    2, 0x06 /* Public */,
-       5,    1,   59,    2, 0x06 /* Public */,
-       6,    1,   62,    2, 0x06 /* Public */,
-       7,    1,   65,    2, 0x06 /* Public */,
+       1,    3,   54,    2, 0x06 /* Public */,
+       6,    1,   61,    2, 0x06 /* Public */,
+       7,    1,   64,    2, 0x06 /* Public */,
+       8,    1,   67,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       8,    0,   68,    2, 0x0a /* Public */,
-       9,    0,   69,    2, 0x0a /* Public */,
-      10,    0,   70,    2, 0x0a /* Public */,
-      11,    0,   71,    2, 0x0a /* Public */,
+       9,    0,   70,    2, 0x0a /* Public */,
+      10,    0,   71,    2, 0x0a /* Public */,
+      11,    0,   72,    2, 0x0a /* Public */,
+      12,    0,   73,    2, 0x0a /* Public */,
 
  // signals: parameters
-    QMetaType::Void, QMetaType::QString, QMetaType::Int,    3,    4,
-    QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int,    4,
-    QMetaType::Void, QMetaType::Int,    4,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::Int,    3,    4,    5,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    5,
+    QMetaType::Void, QMetaType::Int,    5,
 
  // slots: parameters
     QMetaType::Void,
@@ -218,7 +220,7 @@ void MyFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         auto *_t = static_cast<MyFrame *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->drawGraph((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 0: _t->drawGraph((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< int(*)>(_a[3]))); break;
         case 1: _t->showGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->hideGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 3: _t->deleteGraph((*reinterpret_cast< int(*)>(_a[1]))); break;
@@ -231,7 +233,7 @@ void MyFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
     } else if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _t = void (MyFrame::*)(QString , int );
+            using _t = void (MyFrame::*)(QString , QString , int );
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MyFrame::drawGraph)) {
                 *result = 0;
                 return;
@@ -304,9 +306,9 @@ int MyFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void MyFrame::drawGraph(QString _t1, int _t2)
+void MyFrame::drawGraph(QString _t1, QString _t2, int _t3)
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))) };
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t2))), const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t3))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 

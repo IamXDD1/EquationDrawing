@@ -52,6 +52,30 @@ QString NumberProcess::RUN(QString equation)
 
 string NumberProcess::Input(string inputStr)
 {
+    qDebug()<<QString::fromStdString(inputStr);
+    int doubleM = 0;
+    for(int i = 0 ; i < inputStr.size() ; i++)
+    {
+        if(doubleM == 1) doubleM = 2;
+        else if(doubleM == 2)
+        {
+            if(inputStr[i] == '-' || inputStr[i] == '+' ||  inputStr[i] == '*' || inputStr[i] == '/' ||
+                    inputStr[i] == '%' || inputStr[i] == '^' || inputStr[i] == '!')
+            {
+                throw "Error: Two mathmatical symbols connect or begin with mathmatical symbol.";
+            }
+            else doubleM = 0;
+        }
+
+        if(inputStr[i] == '-') doubleM = 1;
+    }
+
+    for(int i = 0 ; i < inputStr.size() ; i++)
+    {
+        if(inputStr[i] == '-') inputStr.insert(i + 1, " 1 * ");
+    }
+
+    qDebug() << QString::fromStdString(inputStr);
     stringstream input;
     std::size_t found = inputStr.find('=');
     istringstream check_ilegal(inputStr);
@@ -62,6 +86,7 @@ string NumberProcess::Input(string inputStr)
         {
             if(check != "sin" && check != "cos" && check != "tan" && check != "(" && check != ")"  && check != "x" && check != "y"
                    && check != "+" && check != "-" && check != "*" && check != "/" && check != "%" && check != "^" && check != "!" )
+
                 throw check;//"Error: undefined variable exists";
         }
         if(check == "(") hollow = true;
@@ -80,6 +105,7 @@ string NumberProcess::Input(string inputStr)
 
 string NumberProcess::judgeFormat(string infix)
 {
+    qDebug() << QString::fromStdString(infix);
     stringstream in;
     in << infix;
     ostringstream toReturn;
@@ -91,8 +117,14 @@ string NumberProcess::judgeFormat(string infix)
     bool number = false;  // judging two numbers connect or not. ex: 2 2 + 3 1 2 (x) -> should be 22 + 312 (o)
     bool minus = false;  // -> - <- (-5)
     double var_temp;
+    bool need_a_par = false;
     for (; in >> part;) {
-        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x' || part[0] == 'y') {
+        if(need_a_par)
+        {
+            if(part[0] != '(') throw "Error: not a reasonable equation.";
+            else need_a_par = false;
+        }
+        if (isdigit(part[0]) || (isdigit(part[1]) && part[0] == '-') || part[0] == 'x') {
             if(part[0]!='x' && part[0] != 'y')
             {
                 double sub = stod(part);
@@ -169,6 +201,10 @@ string NumberProcess::judgeFormat(string infix)
                 sign = false;
                 number = true;
                 minus = false;
+            }
+            else
+            {
+                need_a_par = true;
             }
         }
         toReturn << part << " ";
@@ -319,7 +355,7 @@ string NumberProcess::InfixtoPosfix(string infix)
 
     string temp;
     for (; in >> temp;) {
-        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || temp[0] == 'x' || temp[0] == 'y') {
+        if (isdigit(temp[0]) || (isdigit(temp[1]) && temp[0] == '-') || temp[0] == 'x' || (temp[1] == 'x' && temp[0] == '-') || temp[0] == 'y') {
             posfix << temp << " ";
         }
         else {  // sin ( 2 )
@@ -444,6 +480,7 @@ void Widget::drawing(QString var_name, QString equation, int graph_idx)
           {
               toReplace.replace(index[j], 1, QString::number(x_temp));
           }
+
           x[i] = x_temp; // x goes from -1 to 1
           y[i] = calculate(toReplace); // let's plot a quadratic function
         }
