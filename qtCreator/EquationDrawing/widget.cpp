@@ -52,7 +52,6 @@ QString NumberProcess::RUN(QString equation)
 
 string NumberProcess::Input(string inputStr)
 {
-    qDebug()<<QString::fromStdString(inputStr);
     int doubleM = 0;
     for(int i = 0 ; i < inputStr.size() ; i++)
     {
@@ -75,7 +74,6 @@ string NumberProcess::Input(string inputStr)
         if(inputStr[i] == '-') inputStr.insert(i + 1, " 1 * ");
     }
 
-    qDebug() << QString::fromStdString(inputStr);
     stringstream input;
     std::size_t found = inputStr.find('=');
     istringstream check_ilegal(inputStr);
@@ -105,7 +103,6 @@ string NumberProcess::Input(string inputStr)
 
 string NumberProcess::judgeFormat(string infix)
 {
-    qDebug() << QString::fromStdString(infix);
     stringstream in;
     in << infix;
     ostringstream toReturn;
@@ -459,7 +456,7 @@ void Widget::createFrame(){
 
 void Widget::drawing(QString var_name, QString equation, int graph_idx)
 {
-#define RANGE 20001
+#define RANGE 400001
 #define PRECISION 35.0
 
     //QMessageBox::information(NULL,equation,equation);
